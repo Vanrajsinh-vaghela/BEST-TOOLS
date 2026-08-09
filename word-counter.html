@@ -19,7 +19,6 @@
   <title>Free Word Counter & Character Counter | Real-Time Statistics & Density</title>
   <meta name="title" content="Free Word Counter & Character Counter | Real-Time Statistics & Density">
   <meta name="description" content="Free online word counter and character counter tool. Calculate words, characters, sentences, paragraphs, reading time, speaking time, and keyword density instantly.">
-  <meta name="keywords" content="word counter, character counter, count words online, sentence counter, paragraph count, reading time calculator, speaking time calculator, twitter character count, essay word counter, word count in word, pdf word count">
   <meta name="author" content="BestTools">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#2563eb">
@@ -34,7 +33,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://besttools.pdfgridbox.in/word-counter.html">
   <meta property="og:title" content="Free Word Counter & Character Counter | BestTools">
-  <meta property="og:description" content="Instant real-time word counting, character limits, sentence breakdown, speaking time, and keyword density checker. 100% private and free.">
+  <meta property="og:description" content="Instant real-time word counting, character limits, sentence breakdown, speaking time, and keyword density checker. 100% private local processing.">
   <meta property="og:image" content="https://besttools.pdfgridbox.in/og-word-counter.jpg">
 
   <!-- Twitter -->
@@ -53,7 +52,7 @@
     "url": "https://besttools.pdfgridbox.in/word-counter.html",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "All",
-    "description": "Real-time word, character, sentence, and paragraph counter with reading time, speaking time, and keyword density analysis.",
+    "description": "Real-time word, character, sentence, and paragraph counter with estimated reading time, speaking time, readability, and keyword density analysis.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -92,7 +91,7 @@
         "name": "How does the online word counter work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Simply type or paste your text into the input box. The tool automatically analyzes your input in real time and displays word count, character count, sentences, paragraphs, reading speed, and speaking speed."
+          "text": "Simply type or paste your text into the input box. The tool automatically analyzes your input locally in your web browser and displays word count, character count, sentences, paragraphs, reading speed estimates, and speaking speed estimates."
         }
       },
       {
@@ -100,7 +99,7 @@
         "name": "Is my text stored or saved on your server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No! Everything runs locally in your web browser using JavaScript. None of your text is uploaded, saved, or shared on any external server."
+          "text": "No! Your text is processed locally in your web browser using client-side JavaScript. None of your entered text is uploaded, saved, or transmitted to any external server."
         }
       },
       {
@@ -108,7 +107,7 @@
         "name": "How do I check word count in Microsoft Word or Google Docs?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "In Microsoft Word, look at the bottom-left status bar or press Ctrl + Shift + G. In Google Docs, press Ctrl + Shift + C or go to Tools > Word count."
+          "text": "In Microsoft Word, check the status bar at the bottom-left corner or press Ctrl + Shift + G. In Google Docs, press Ctrl + Shift + C or navigate to Tools > Word count. Exact shortcuts may vary slightly by OS or app version."
         }
       },
       {
@@ -116,7 +115,7 @@
         "name": "How many words is a standard page?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Single-spaced standard text with a 12pt font averages roughly 500 words per page. Double-spaced text averages about 250 words per page."
+          "text": "A standard single-spaced page with a 12pt font averages roughly 500 words, while double-spaced text averages about 250 words per page. Actual page counts depend on margins, font type, and spacing."
         }
       },
       {
@@ -124,7 +123,7 @@
         "name": "How is estimated speaking time calculated?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Average speaking speed for presentations and speeches is approximately 130 words per minute (WPM). Our tool calculates speaking time based on this standard benchmark."
+          "text": "Average speaking speed for presentations and speeches is typically estimated at 130 words per minute (WPM). Our tool calculates estimated speaking time based on this general benchmark."
         }
       }
     ]
@@ -165,13 +164,25 @@
       text-decoration: none;
     }
 
-    button, textarea {
+    button, textarea, input {
       font: inherit;
     }
 
     .container {
       width: min(1120px, calc(100% - 32px));
       margin: auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* HEADER & BREADCRUMB */
@@ -261,7 +272,7 @@
     }
 
     .stat-card .num {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       color: var(--primary);
       line-height: 1.1;
@@ -274,6 +285,75 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    /* TARGET WORD COUNT BAR */
+    .target-bar-section {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .target-input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .target-input-group label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .target-input-group input {
+      width: 110px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .target-input-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .target-progress-wrapper {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .target-progress-track {
+      flex: 1;
+      height: 8px;
+      background: var(--soft);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .target-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .target-progress-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      white-space: nowrap;
     }
 
     /* EDITOR AREA */
@@ -324,6 +404,11 @@
       border-color: #93c5fd;
     }
 
+    .btn:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     .btn-primary {
       background: var(--primary);
       color: #fff;
@@ -335,7 +420,64 @@
       color: #fff;
     }
 
-    /* KEYWORD DENSITY */
+    /* READABILITY SECTION */
+    .readability-section {
+      margin-top: 24px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .readability-section h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .readability-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .readability-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+
+    .readability-card .score-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .readability-card .score-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .readability-card .score-label {
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .readability-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* KEYWORD DENSITY WITH PHRASE TABS */
     .density-section {
       margin-top: 24px;
       background: #fff;
@@ -344,9 +486,39 @@
       padding: 20px;
     }
 
-    .density-section h3 {
-      font-size: 16px;
+    .density-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 12px;
+    }
+
+    .density-header h3 {
+      font-size: 16px;
+    }
+
+    .density-tabs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
     }
 
     .density-list {
@@ -375,7 +547,82 @@
       font-size: 10px;
     }
 
-    /* SOCIAL LIMITS TABLE */
+    /* LIVE PLATFORM CHARACTER LIMITS */
+    .limits-section {
+      margin-top: 24px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .limits-section h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .limits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .limit-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .limit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .limit-header .platform {
+      color: var(--text);
+    }
+
+    .limit-header .badge {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .limit-bar-track {
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .limit-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      transition: width 0.2s, background-color 0.2s;
+    }
+
+    .limit-bar-fill.overlimit {
+      background: #ef4444;
+    }
+
+    .limit-footer {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .limit-footer.overlimit {
+      color: #ef4444;
+      font-weight: 700;
+    }
+
+    /* SOCIAL LIMITS & CONVERSION TABLES */
     .guide-table-section {
       margin-top: 32px;
       background: #fff;
@@ -581,6 +828,13 @@
         flex: 1 1 calc(50% - 8px);
         text-align: center;
       }
+      .target-bar-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .target-input-group {
+        justify-content: space-between;
+      }
     }
   </style>
 </head>
@@ -589,7 +843,7 @@
   <!-- HEADER -->
   <header>
     <div class="container">
-      <nav class="nav">
+      <nav class="nav" aria-label="Main Navigation">
         <a class="logo" href="/" aria-label="BestTools Home">
           <span class="logo-mark">B</span>
           <span>BestTools</span>
@@ -601,21 +855,25 @@
 
   <main class="container">
     <!-- BREADCRUMB -->
-    <div class="breadcrumb">
+    <nav class="breadcrumb" aria-label="Breadcrumb navigation">
       <a href="/">Home</a> / <span>Word Counter</span>
-    </div>
+    </nav>
 
     <!-- HERO -->
     <section class="tool-hero">
       <h1>Free Online Word Counter</h1>
-      <p>Instant real-time word count, character calculator, sentence breakdown, reading time, speaking time, and keyword density checker.</p>
+      <p>Instant real-time word count, character calculator, sentence breakdown, reading time, speaking time, readability, and keyword density checker.</p>
     </section>
 
     <!-- LIVE STATS DASHBOARD -->
-    <section class="stats-grid">
+    <section class="stats-grid" aria-label="Live Text Statistics" aria-live="polite">
       <div class="stat-card">
         <div class="num" id="wordCount">0</div>
         <div class="label">Words</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="uniqueWordCount">0</div>
+        <div class="label">Unique Words</div>
       </div>
       <div class="stat-card">
         <div class="num" id="charCount">0</div>
@@ -634,21 +892,44 @@
         <div class="label">Paragraphs</div>
       </div>
       <div class="stat-card">
+        <div class="num" id="avgWordLen">0</div>
+        <div class="label">Avg. Word Length</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="avgSentenceLen">0</div>
+        <div class="label">Avg. Sent. Length</div>
+      </div>
+      <div class="stat-card">
         <div class="num" id="estPages">0</div>
         <div class="label">Pages (Est.)</div>
       </div>
       <div class="stat-card">
         <div class="num" id="readingTime">0s</div>
-        <div class="label">Reading Time</div>
+        <div class="label">Reading Time (Est.)</div>
       </div>
       <div class="stat-card">
         <div class="num" id="speakingTime">0s</div>
-        <div class="label">Speaking Time</div>
+        <div class="label">Speaking Time (Est.)</div>
+      </div>
+    </section>
+
+    <!-- TARGET WORD COUNT SECTION -->
+    <section class="target-bar-section" aria-label="Target Word Count Goal">
+      <div class="target-input-group">
+        <label for="targetInput">Target Word Count:</label>
+        <input type="number" id="targetInput" placeholder="e.g. 1000" min="1" aria-label="Optional Target Word Count Goal">
+      </div>
+      <div id="targetProgressWrapper" class="target-progress-wrapper" style="display: none;">
+        <div class="target-progress-track">
+          <div id="targetProgressFill" class="target-progress-fill"></div>
+        </div>
+        <span id="targetProgressText" class="target-progress-text">0 / 0 (0%)</span>
       </div>
     </section>
 
     <!-- EDITOR AREA -->
     <section class="editor-container">
+      <label for="textInput" class="sr-only">Type or paste text to count words and characters</label>
       <textarea
         id="textInput"
         placeholder="Type or paste your text here to calculate words and characters..."
@@ -656,19 +937,106 @@
       ></textarea>
 
       <div class="editor-actions">
-        <button class="btn btn-primary" id="copyBtn">Copy Text</button>
-        <button class="btn" id="clearBtn">Clear Text</button>
-        <button class="btn" id="uppercaseBtn">UPPERCASE</button>
-        <button class="btn" id="lowercaseBtn">lowercase</button>
-        <button class="btn" id="titlecaseBtn">Title Case</button>
+        <button class="btn btn-primary" id="copyBtn" type="button" aria-label="Copy input text to clipboard">Copy Text</button>
+        <button class="btn" id="clearBtn" type="button" aria-label="Clear all text from editor">Clear Text</button>
+        <button class="btn" id="uppercaseBtn" type="button" aria-label="Convert text to UPPERCASE">UPPERCASE</button>
+        <button class="btn" id="lowercaseBtn" type="button" aria-label="Convert text to lowercase">lowercase</button>
+        <button class="btn" id="titlecaseBtn" type="button" aria-label="Convert English text to Title Case">Title Case</button>
+        <button class="btn" id="downloadReportBtn" type="button" aria-label="Download text analysis report as text file">Download Report</button>
       </div>
     </section>
 
-    <!-- KEYWORD DENSITY -->
-    <section class="density-section">
-      <h3>Top Keyword Density</h3>
+    <!-- READABILITY SCORE SECTION -->
+    <section class="readability-section" aria-label="Text Readability Metrics">
+      <h3>Readability Score (English Estimate)</h3>
+      <div class="readability-grid">
+        <div class="readability-card">
+          <div class="score-title">Flesch Reading Ease</div>
+          <div class="score-val" id="fleschScore">N/A</div>
+          <div class="score-label" id="fleschLabel">-</div>
+        </div>
+        <div class="readability-card">
+          <div class="score-title">Reading Grade Level</div>
+          <div class="score-val" id="gradeScore">N/A</div>
+          <div class="score-label" id="gradeLabel">-</div>
+        </div>
+      </div>
+      <div class="readability-note" id="readabilityNote">Enter English text to evaluate readability scores.</div>
+    </section>
+
+    <!-- KEYWORD & PHRASE DENSITY -->
+    <section class="density-section" aria-label="Keyword Density Analysis">
+      <div class="density-header">
+        <h3>Top Keyword & Phrase Density</h3>
+        <div class="density-tabs" role="tablist" aria-label="Phrase Length Selection">
+          <button class="tab-btn active" id="tab1Word" role="tab" aria-selected="true" type="button">Top Words</button>
+          <button class="tab-btn" id="tab2Word" role="tab" aria-selected="false" type="button">2-Word Phrases</button>
+          <button class="tab-btn" id="tab3Word" role="tab" aria-selected="false" type="button">3-Word Phrases</button>
+        </div>
+      </div>
       <div id="densityList" class="density-list">
         <span style="color: var(--muted); font-size: 13px;">Start typing to see keyword density...</span>
+      </div>
+    </section>
+
+    <!-- LIVE PLATFORM CHARACTER LIMITS -->
+    <section class="limits-section" aria-label="Reference Character Limits">
+      <h3>Reference Social Media & Meta Character Limits</h3>
+      <div class="limits-grid">
+        <div class="limit-card">
+          <div class="limit-header">
+            <span class="platform">X (Twitter) Post</span>
+            <span class="badge" id="xBadge">0 / 280</span>
+          </div>
+          <div class="limit-bar-track">
+            <div class="limit-bar-fill" id="xFill"></div>
+          </div>
+          <div class="limit-footer" id="xRem">280 left</div>
+        </div>
+
+        <div class="limit-card">
+          <div class="limit-header">
+            <span class="platform">Meta Title (SEO)</span>
+            <span class="badge" id="titleBadge">0 / 60</span>
+          </div>
+          <div class="limit-bar-track">
+            <div class="limit-bar-fill" id="titleFill"></div>
+          </div>
+          <div class="limit-footer" id="titleRem">60 left</div>
+        </div>
+
+        <div class="limit-card">
+          <div class="limit-header">
+            <span class="platform">Meta Description</span>
+            <span class="badge" id="descBadge">0 / 160</span>
+          </div>
+          <div class="limit-bar-track">
+            <div class="limit-bar-fill" id="descFill"></div>
+          </div>
+          <div class="limit-footer" id="descRem">160 left</div>
+        </div>
+
+        <div class="limit-card">
+          <div class="limit-header">
+            <span class="platform">Instagram Caption</span>
+            <span class="badge" id="instaBadge">0 / 2,200</span>
+          </div>
+          <div class="limit-bar-track">
+            <div class="limit-bar-fill" id="instaFill"></div>
+          </div>
+          <div class="limit-footer" id="instaRem">2,200 left</div>
+        </div>
+
+        <div class="limit-card">
+          <div class="limit-header">
+            <span class="platform">LinkedIn Post</span>
+            <span class="badge" id="linkedinBadge">0 / 3,000</span>
+          </div>
+          <div class="limit-bar-track">
+            <div class="limit-bar-fill" id="linkedinFill"></div>
+          </div>
+          <div class="limit-footer" id="linkedinRem">3,000 left</div>
+        </div>
       </div>
     </section>
 
@@ -678,7 +1046,7 @@
         <h3>How to Check Word Count in MS Word</h3>
         <ul>
           <li><strong>Status Bar:</strong> Look at the bottom-left corner of your Microsoft Word screen.</li>
-          <li><strong>Keyboard Shortcut:</strong> Press <code>Ctrl + Shift + G</code> (Windows) or <code>Cmd + Shift + G</code> (Mac).</li>
+          <li><strong>Common Shortcut:</strong> Press <code>Ctrl + Shift + G</code> (Windows) or <code>Cmd + Shift + G</code> (Mac) depending on version.</li>
           <li><strong>Top Menu:</strong> Go to the <strong>Review</strong> tab and click <strong>Word Count</strong>.</li>
         </ul>
       </div>
@@ -686,9 +1054,9 @@
       <div class="guide-card">
         <h3>How to Check Word Count in Google Docs</h3>
         <ul>
-          <li><strong>Shortcut:</strong> Press <code>Ctrl + Shift + C</code> while editing your document.</li>
+          <li><strong>Common Shortcut:</strong> Press <code>Ctrl + Shift + C</code> while editing your document.</li>
           <li><strong>Top Menu:</strong> Click <strong>Tools</strong> in the top menu and select <strong>Word count</strong>.</li>
-          <li><strong>Display Option:</strong> Check "Display word count while typing" to see a live counter.</li>
+          <li><strong>Display Option:</strong> Check "Display word count while typing" for live status.</li>
         </ul>
       </div>
 
@@ -704,16 +1072,16 @@
 
     <!-- WORD TO PAGE CONVERSION TABLE -->
     <section class="guide-table-section">
-      <h2>Word Count to Page Length Quick Reference</h2>
-      <p>Estimate how many pages your text will take based on standard formatting (A4 page size, 12pt font):</p>
+      <h2>Word Count to Page Length Estimated Reference</h2>
+      <p>Rough estimate of pages based on standard formatting (A4 page size, 12pt font):</p>
 
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
               <th>Word Count</th>
-              <th>Single Spaced Pages</th>
-              <th>Double Spaced Pages</th>
+              <th>Single Spaced Pages (Est.)</th>
+              <th>Double Spaced Pages (Est.)</th>
               <th>Estimated Reading Time</th>
             </tr>
           </thead>
@@ -761,15 +1129,15 @@
 
     <!-- SOCIAL MEDIA LIMITS TABLE -->
     <section class="guide-table-section">
-      <h2>Popular Social Media & SEO Character Limits</h2>
-      <p>Ensure your content complies with maximum character limits across platforms:</p>
+      <h2>Popular Social Media & SEO Reference Character Limits</h2>
+      <p>Standard guidelines across social platforms (subject to platform policy updates):</p>
 
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
               <th>Platform / Medium</th>
-              <th>Maximum Character Limit</th>
+              <th>Reference Character Limit</th>
               <th>Recommended Size</th>
             </tr>
           </thead>
@@ -813,16 +1181,17 @@
     <article class="seo-content">
       <h2>Why Use Our Free Online Word Counter Tool?</h2>
       <p>
-        Whether you are a student writing an academic essay, an author drafting a book chapter, an SEO content marketer, or a social media manager crafting short tweets, keeping track of your exact word count and character count is essential. Our real-time text counter delivers instant statistics as you type, complete with sentence structure breakdown, estimated reading duration, speaking speed, and top keyword frequency.
+        Whether you are a student writing an academic essay, an author drafting a book chapter, an SEO content marketer, or a social media manager crafting short posts, keeping track of your exact word count and character count is essential. Our real-time text counter delivers instant statistics as you type, complete with sentence structure breakdown, estimated reading duration, speaking speed, readability analysis, and top keyword frequency.
       </p>
 
       <h3>Key Features for Writers & Developers</h3>
       <ul>
-        <li><strong>Real-Time Analytics:</strong> View word count, character count (with/without spaces), sentence count, and paragraph counts updated instantly.</li>
+        <li><strong>Real-Time Analytics:</strong> View word count, unique words, character count (with/without spaces), sentence count, and paragraph counts updated instantly.</li>
+        <li><strong>Multilingual Support:</strong> Handles English, Hindi, Gujarati, Spanish, French, Arabic, and unicode-based text structures.</li>
         <li><strong>Estimated Reading & Speaking Duration:</strong> Calculate how long it takes to read (200 WPM) or deliver your text as a speech (130 WPM).</li>
-        <li><strong>Keyword Density Analysis:</strong> Avoid search engine keyword stuffing penalties by checking your most frequently repeated words.</li>
-        <li><strong>One-Click Text Utilities:</strong> Convert your input to UPPERCASE, lowercase, or Title Case with a single click.</li>
-        <li><strong>100% Client-Side Privacy:</strong> Your data never leaves your browser. Zero server uploads, zero logging, and complete confidentiality.</li>
+        <li><strong>Keyword & N-Gram Density Analysis:</strong> Inspect single words, 2-word, and 3-word phrase frequencies to refine your writing structure.</li>
+        <li><strong>Target Word Count Tracker:</strong> Set custom word count goals with a visual progress bar.</li>
+        <li><strong>100% Client-Side Privacy:</strong> Your text is processed locally inside your web browser. No document content is stored or uploaded to remote servers. Standard web analytics (Google Analytics) may run separately to track overall site usage.</li>
       </ul>
 
       <!-- RELATED TOOLS LINKING -->
@@ -848,13 +1217,13 @@
         <details>
           <summary>Is my text stored or saved on your server?</summary>
           <div class="answer">
-            No! Everything runs locally inside your web browser. None of your content is ever transmitted, logged, or saved on any remote server.
+            No! Your text is processed locally inside your web browser. None of your entered text is uploaded, saved, or transmitted to external servers. Standard site traffic analytics may run separately for general aggregated statistics.
           </div>
         </details>
         <details>
           <summary>How do I check word count in Microsoft Word or Google Docs?</summary>
           <div class="answer">
-            In Microsoft Word, view the status bar at the bottom-left corner or press <strong>Ctrl + Shift + G</strong>. In Google Docs, press <strong>Ctrl + Shift + C</strong> or navigate to <strong>Tools > Word count</strong>.
+            In Microsoft Word, view the status bar at the bottom-left corner or press <strong>Ctrl + Shift + G</strong>. In Google Docs, press <strong>Ctrl + Shift + C</strong> or navigate to <strong>Tools > Word count</strong>. Shortcuts may vary depending on OS and software version.
           </div>
         </details>
         <details>
@@ -884,44 +1253,114 @@
     // JS Elements
     const textInput = document.getElementById("textInput");
     const wordCountEl = document.getElementById("wordCount");
+    const uniqueWordCountEl = document.getElementById("uniqueWordCount");
     const charCountEl = document.getElementById("charCount");
     const charNoSpaceCountEl = document.getElementById("charNoSpaceCount");
     const sentenceCountEl = document.getElementById("sentenceCount");
     const paragraphCountEl = document.getElementById("paragraphCount");
+    const avgWordLenEl = document.getElementById("avgWordLen");
+    const avgSentenceLenEl = document.getElementById("avgSentenceLen");
     const estPagesEl = document.getElementById("estPages");
     const readingTimeEl = document.getElementById("readingTime");
     const speakingTimeEl = document.getElementById("speakingTime");
-    const densityListEl = document.getElementById("densityList");
 
+    // Target elements
+    const targetInput = document.getElementById("targetInput");
+    const targetProgressWrapper = document.getElementById("targetProgressWrapper");
+    const targetProgressFill = document.getElementById("targetProgressFill");
+    const targetProgressText = document.getElementById("targetProgressText");
+
+    // Readability elements
+    const fleschScoreEl = document.getElementById("fleschScore");
+    const fleschLabelEl = document.getElementById("fleschLabel");
+    const gradeScoreEl = document.getElementById("gradeScore");
+    const gradeLabelEl = document.getElementById("gradeLabel");
+    const readabilityNoteEl = document.getElementById("readabilityNote");
+
+    // Density elements
+    const densityListEl = document.getElementById("densityList");
+    const tab1Word = document.getElementById("tab1Word");
+    const tab2Word = document.getElementById("tab2Word");
+    const tab3Word = document.getElementById("tab3Word");
+
+    // Buttons
     const copyBtn = document.getElementById("copyBtn");
     const clearBtn = document.getElementById("clearBtn");
     const uppercaseBtn = document.getElementById("uppercaseBtn");
     const lowercaseBtn = document.getElementById("lowercaseBtn");
     const titlecaseBtn = document.getElementById("titlecaseBtn");
+    const downloadReportBtn = document.getElementById("downloadReportBtn");
 
-    // Live Calculations
+    // State
+    let currentNgram = 1;
+    let scheduledAnimationFrame = false;
+
+    // Unicode Character Count
+    function getUnicodeCharCount(str) {
+      return Array.from(str).length;
+    }
+
+    function getUnicodeCharCountNoSpaces(str) {
+      return Array.from(str.replace(/\s+/g, '')).length;
+    }
+
+    // Multilingual Word Tokenizer
+    function getWordsArray(text) {
+      if (!text || !text.trim()) return [];
+      const matches = text.match(/[\p{L}\p{N}]+(?:['’\-][\p{L}\p{N}]+)*/gu);
+      if (matches) return matches;
+      return text.trim().split(/\s+/).filter(Boolean);
+    }
+
+    // Performance Optimization: RequestAnimationFrame Debounce
+    function queueUpdate() {
+      if (scheduledAnimationFrame) return;
+      scheduledAnimationFrame = true;
+      requestAnimationFrame(() => {
+        updateCounts();
+        scheduledAnimationFrame = false;
+      });
+    }
+
+    // Main Calculation Function
     function updateCounts() {
       const text = textInput.value;
 
-      // Words Calculation
-      const wordsArray = text.trim().split(/\s+/).filter(Boolean);
-      const words = text.trim() === "" ? 0 : wordsArray.length;
+      // Words Array & Counts
+      const wordsArray = getWordsArray(text);
+      const words = wordsArray.length;
       wordCountEl.textContent = words.toLocaleString();
 
-      // Characters
-      charCountEl.textContent = text.length.toLocaleString();
+      // Cleaned words for unique & density
+      const cleanedWords = wordsArray.map(w => w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "")).filter(Boolean);
+
+      // Unique Words
+      const uniqueSet = new Set(cleanedWords);
+      uniqueWordCountEl.textContent = uniqueSet.size.toLocaleString();
+
+      // Unicode Characters
+      const totalChars = getUnicodeCharCount(text);
+      charCountEl.textContent = totalChars.toLocaleString();
 
       // Characters without spaces
-      const charsNoSpace = text.replace(/\s+/g, "").length;
+      const charsNoSpace = getUnicodeCharCountNoSpaces(text);
       charNoSpaceCountEl.textContent = charsNoSpace.toLocaleString();
 
       // Sentences
-      const sentences = text.trim() === "" ? 0 : text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+      const sentences = text.trim() === "" ? 0 : text.split(/[.!?\u0964]+/).filter(s => s.trim().length > 0).length;
       sentenceCountEl.textContent = sentences.toLocaleString();
 
       // Paragraphs
       const paragraphs = text.trim() === "" ? 0 : text.split(/\n+/).filter(p => p.trim().length > 0).length;
       paragraphCountEl.textContent = paragraphs.toLocaleString();
+
+      // Average Word Length
+      const avgWordLen = words > 0 ? (charsNoSpace / words).toFixed(1) : "0";
+      avgWordLenEl.textContent = `${avgWordLen} chars`;
+
+      // Average Sentence Length
+      const avgSentLen = sentences > 0 ? (words / sentences).toFixed(1) : "0";
+      avgSentenceLenEl.textContent = `${avgSentLen} w/sent`;
 
       // Estimated Single Spaced Pages (500 wpm)
       if (words === 0) {
@@ -931,7 +1370,7 @@
         estPagesEl.textContent = pages;
       }
 
-      // Reading Time (200 wpm)
+      // Estimated Reading Time (200 wpm)
       if (words === 0) {
         readingTimeEl.textContent = "0s";
       } else {
@@ -945,7 +1384,7 @@
         }
       }
 
-      // Speaking Time (130 wpm)
+      // Estimated Speaking Time (130 wpm)
       if (words === 0) {
         speakingTimeEl.textContent = "0s";
       } else {
@@ -959,74 +1398,308 @@
         }
       }
 
+      // Target Progress
+      updateTargetProgress(words);
+
+      // Readability
+      updateReadability(cleanedWords, sentences, text);
+
+      // Platform Limits
+      updatePlatformLimits(totalChars);
+
       // Keyword Density
-      updateDensity(wordsArray);
+      updateDensity(cleanedWords, currentNgram);
     }
 
-    // Keyword Density Algorithm
-    function updateDensity(wordsArray) {
-      if (wordsArray.length === 0) {
-        densityListEl.innerHTML = '<span style="color: var(--muted); font-size: 13px;">Start typing to see keyword density...</span>';
+    // Target Progress Calculation
+    function updateTargetProgress(words) {
+      const targetVal = parseInt(targetInput.value, 10);
+      if (isNaN(targetVal) || targetVal <= 0) {
+        targetProgressWrapper.style.display = "none";
         return;
       }
 
-      const freqMap = {};
-      const stopWords = new Set(["the", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "is", "or", "an"]);
+      targetProgressWrapper.style.display = "flex";
+      const percentage = Math.min(100, Math.round((words / targetVal) * 100));
+      targetProgressFill.style.width = `${percentage}%`;
+      targetProgressText.textContent = `${words.toLocaleString()} / ${targetVal.toLocaleString()} (${percentage}%)`;
+    }
 
-      wordsArray.forEach(word => {
-        const cleanWord = word.toLowerCase().replace(/[^a-z0-9]/g, "");
-        if (cleanWord.length > 2 && !stopWords.has(cleanWord)) {
-          freqMap[cleanWord] = (freqMap[cleanWord] || 0) + 1;
-        }
+    // English Detection
+    function isMainlyEnglish(text) {
+      if (!text.trim()) return true;
+      const latinLetters = (text.match(/[a-zA-Z]/g) || []).length;
+      const totalUnicodeLetters = (text.match(/[\p{L}]/gu) || []).length;
+      if (totalUnicodeLetters === 0) return true;
+      return (latinLetters / totalUnicodeLetters) >= 0.7;
+    }
+
+    // Syllable Count Heuristic for English
+    function countSyllables(word) {
+      word = word.toLowerCase().replace(/[^a-z]/g, '');
+      if (word.length <= 3) return 1;
+      word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+      word = word.replace(/^y/, '');
+      const syllables = word.match(/[aeiouy]{1,2}/g);
+      return syllables ? syllables.length : 1;
+    }
+
+    // Readability Calculation (English Flesch Metrics)
+    function updateReadability(cleanedWords, sentences, text) {
+      if (!text.trim() || cleanedWords.length < 5 || sentences === 0) {
+        fleschScoreEl.textContent = "N/A";
+        fleschLabelEl.textContent = "-";
+        gradeScoreEl.textContent = "N/A";
+        gradeLabelEl.textContent = "-";
+        readabilityNoteEl.textContent = "Enter at least 5 words and a complete sentence to calculate readability.";
+        return;
+      }
+
+      if (!isMainlyEnglish(text)) {
+        fleschScoreEl.textContent = "N/A";
+        fleschLabelEl.textContent = "Non-English";
+        gradeScoreEl.textContent = "N/A";
+        gradeLabelEl.textContent = "Non-English";
+        readabilityNoteEl.textContent = "Readability metrics (Flesch Scores) are designed for English text.";
+        return;
+      }
+
+      let totalSyllables = 0;
+      cleanedWords.forEach(w => {
+        totalSyllables += countSyllables(w);
       });
 
-      const sortedWords = Object.entries(freqMap)
+      const wordsCount = cleanedWords.length;
+      const asl = wordsCount / sentences;
+      const asw = totalSyllables / wordsCount;
+
+      let flesch = 206.835 - (1.015 * asl) - (84.6 * asw);
+      flesch = Math.min(100, Math.max(0, Math.round(flesch)));
+
+      let grade = (0.39 * asl) + (11.8 * asw) - 15.59;
+      grade = Math.max(0, Math.round(grade * 10) / 10);
+
+      let fleschCategory = "";
+      if (flesch >= 90) fleschCategory = "Very Easy (5th Grade)";
+      else if (flesch >= 80) fleschCategory = "Easy (6th Grade)";
+      else if (flesch >= 70) fleschCategory = "Fairly Easy (7th Grade)";
+      else if (flesch >= 60) fleschCategory = "Standard (8th-9th Grade)";
+      else if (flesch >= 50) fleschCategory = "Fairly Difficult (10th-12th)";
+      else if (flesch >= 30) fleschCategory = "Difficult (College)";
+      else fleschCategory = "Very Difficult (Graduate)";
+
+      fleschScoreEl.textContent = flesch;
+      fleschLabelEl.textContent = fleschCategory;
+
+      gradeScoreEl.textContent = `Grade ${grade}`;
+      gradeLabelEl.textContent = grade <= 6 ? "Easy Reading" : grade <= 10 ? "Average Reading" : "Advanced Reading";
+
+      readabilityNoteEl.textContent = "Estimated score calculated using Flesch-Kincaid formulas for English text.";
+    }
+
+    // Platform Live Character Limits
+    function updatePlatformLimits(chars) {
+      const platforms = [
+        { id: "x", max: 280 },
+        { id: "title", max: 60 },
+        { id: "desc", max: 160 },
+        { id: "insta", max: 2200 },
+        { id: "linkedin", max: 3000 }
+      ];
+
+      platforms.forEach(p => {
+        const badgeEl = document.getElementById(`${p.id}Badge`);
+        const fillEl = document.getElementById(`${p.id}Fill`);
+        const remEl = document.getElementById(`${p.id}Rem`);
+
+        badgeEl.textContent = `${chars.toLocaleString()} / ${p.max.toLocaleString()}`;
+        const percentage = Math.min(100, (chars / p.max) * 100);
+        fillEl.style.width = `${percentage}%`;
+
+        const remaining = p.max - chars;
+        if (remaining < 0) {
+          fillEl.classList.add("overlimit");
+          remEl.classList.add("overlimit");
+          remEl.textContent = `${Math.abs(remaining).toLocaleString()} over limit`;
+        } else {
+          fillEl.classList.remove("overlimit");
+          remEl.classList.remove("overlimit");
+          remEl.textContent = `${remaining.toLocaleString()} left`;
+        }
+      });
+    }
+
+    // Safe DOM Keyword Density Rendering (XSS Protection)
+    function updateDensity(cleanedWords, n) {
+      densityListEl.textContent = "";
+
+      if (cleanedWords.length < n) {
+        const span = document.createElement("span");
+        span.style.color = "var(--muted)";
+        span.style.fontSize = "13px";
+        span.textContent = "Type more text to see density statistics...";
+        densityListEl.appendChild(span);
+        return;
+      }
+
+      const stopWords = new Set(["the", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "is", "or", "an"]);
+      const freqMap = {};
+
+      for (let i = 0; i <= cleanedWords.length - n; i++) {
+        const gram = cleanedWords.slice(i, i + n);
+        if (n === 1) {
+          if (stopWords.has(gram[0]) || gram[0].length <= 2) continue;
+        } else {
+          if (gram.every(w => stopWords.has(w))) continue;
+        }
+        const phrase = gram.join(" ");
+        freqMap[phrase] = (freqMap[phrase] || 0) + 1;
+      }
+
+      const sorted = Object.entries(freqMap)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 8);
 
-      if (sortedWords.length === 0) {
-        densityListEl.innerHTML = '<span style="color: var(--muted); font-size: 13px;">Keep typing more words...</span>';
+      if (sorted.length === 0) {
+        const span = document.createElement("span");
+        span.style.color = "var(--muted)";
+        span.style.fontSize = "13px";
+        span.textContent = "No repeated terms or phrases detected...";
+        densityListEl.appendChild(span);
         return;
       }
 
-      densityListEl.innerHTML = sortedWords.map(([word, count]) => `
-        <div class="density-badge">
-          <span>${word}</span>
-          <span class="count">${count}</span>
-        </div>
-      `).join("");
+      sorted.forEach(([phrase, count]) => {
+        const badge = document.createElement("div");
+        badge.className = "density-badge";
+
+        const phraseSpan = document.createElement("span");
+        phraseSpan.textContent = phrase;
+
+        const countSpan = document.createElement("span");
+        countSpan.className = "count";
+        countSpan.textContent = count;
+
+        badge.appendChild(phraseSpan);
+        badge.appendChild(countSpan);
+        densityListEl.appendChild(badge);
+      });
     }
 
-    // Event Listeners
-    textInput.addEventListener("input", updateCounts);
+    // Density Tab Handler
+    function setDensityTab(n) {
+      currentNgram = n;
+      [tab1Word, tab2Word, tab3Word].forEach((tab, index) => {
+        const active = (index + 1) === n;
+        tab.classList.toggle("active", active);
+        tab.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      queueUpdate();
+    }
 
+    tab1Word.addEventListener("click", () => setDensityTab(1));
+    tab2Word.addEventListener("click", () => setDensityTab(2));
+    tab3Word.addEventListener("click", () => setDensityTab(3));
+
+    // Input Event Listeners
+    targetInput.addEventListener("input", queueUpdate);
+    textInput.addEventListener("input", queueUpdate);
+
+    // Copy Action
     copyBtn.addEventListener("click", () => {
       if (!textInput.value) return;
-      navigator.clipboard.writeText(textInput.value);
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textInput.value).then(showCopiedNotice);
+      } else {
+        textInput.select();
+        try {
+          document.execCommand('copy');
+          showCopiedNotice();
+        } catch (err) {
+          console.error("Copy failed", err);
+        }
+      }
+    });
+
+    function showCopiedNotice() {
       const originalText = copyBtn.textContent;
       copyBtn.textContent = "Copied!";
       setTimeout(() => copyBtn.textContent = originalText, 1500);
-    });
+    }
 
+    // Clear Action
     clearBtn.addEventListener("click", () => {
       textInput.value = "";
-      updateCounts();
+      queueUpdate();
       textInput.focus();
     });
 
+    // Case Conversions
     uppercaseBtn.addEventListener("click", () => {
       textInput.value = textInput.value.toUpperCase();
-      updateCounts();
+      queueUpdate();
     });
 
     lowercaseBtn.addEventListener("click", () => {
       textInput.value = textInput.value.toLowerCase();
-      updateCounts();
+      queueUpdate();
     });
 
     titlecaseBtn.addEventListener("click", () => {
-      textInput.value = textInput.value.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
-      updateCounts();
+      // Safe Unicode-aware Title Case for English words
+      textInput.value = textInput.value.replace(/\b[a-zA-Z]+/g, word => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      });
+      queueUpdate();
+    });
+
+    // Report Download
+    downloadReportBtn.addEventListener("click", () => {
+      const words = wordCountEl.textContent;
+      const unique = uniqueWordCountEl.textContent;
+      const chars = charCountEl.textContent;
+      const charsNoSpace = charNoSpaceCountEl.textContent;
+      const sents = sentenceCountEl.textContent;
+      const paras = paragraphCountEl.textContent;
+      const avgW = avgWordLenEl.textContent;
+      const avgS = avgSentenceLenEl.textContent;
+      const pages = estPagesEl.textContent;
+      const readTime = readingTimeEl.textContent;
+      const speakTime = speakingTimeEl.textContent;
+      const flesch = fleschScoreEl.textContent;
+      const grade = gradeScoreEl.textContent;
+
+      const reportContent =
+`========================================
+BestTools - Word Counter Summary Report
+========================================
+Words: ${words}
+Unique Words: ${unique}
+Characters (with spaces): ${chars}
+Characters (no spaces): ${charsNoSpace}
+Sentences: ${sents}
+Paragraphs: ${paras}
+Average Word Length: ${avgW}
+Average Sentence Length: ${avgS}
+Estimated Pages: ${pages}
+Estimated Reading Time: ${readTime}
+Estimated Speaking Time: ${speakTime}
+Readability (Flesch Reading Ease): ${flesch}
+Readability (Grade Level): ${grade}
+----------------------------------------
+Generated on: ${new Date().toLocaleString()}
+Source: https://besttools.pdfgridbox.in/word-counter.html
+========================================`;
+
+      const blob = new Blob([reportContent], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "word-counter-report.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     });
   </script>
 </body>
