@@ -1,0 +1,757 @@
+<!DOCTYPE html><html lang="en">
+<head><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-41C8GSM3WH"></script><script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config','G-41C8GSM3WH');
+</script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Unexpected Token in JSON at Position 0: Fix JSON.parse Errors</title><meta name="description" content="Fix Unexpected token in JSON at position 0, 1 or N in JavaScript. Learn why JSON.parse and fetch().json() fail and how to fix invalid JSON, HTML responses, quotes and trailing commas."><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="author" content="BestTools Editorial Team">
+<meta name="theme-color" content="#0b1220"><link rel="canonical" href="https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin><!-- Open Graph --><meta property="og:type" content="article">
+<meta property="og:title" content="Unexpected Token in JSON at Position 0: How to Fix It">
+<meta property="og:description" content="Learn how to fix JSON.parse and fetch JSON errors caused by invalid JSON, HTML responses, single quotes, trailing commas and malformed API data.">
+<meta property="og:url" content="https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html">
+<meta property="og:site_name" content="BestTools">
+<meta property="og:image" content="https://besttools.pdfgridbox.in/images/json-error-guide.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675"><!-- Twitter --><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unexpected Token in JSON at Position 0: Fix Guide">
+<meta name="twitter:description" content="Fix JSON.parse, fetch().json() and invalid JSON syntax errors with practical JavaScript examples.">
+<meta name="twitter:image" content="https://besttools.pdfgridbox.in/images/json-error-guide.webp"><link rel="stylesheet" href="../style.css"><!-- Breadcrumb Schema --><script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type":"ListItem",
+      "position":1,
+      "name":"BestTools",
+      "item":"https://besttools.pdfgridbox.in/"
+    },
+    {
+      "@type":"ListItem",
+      "position":2,
+      "name":"Developer Guides",
+      "item":"https://besttools.pdfgridbox.in/blog/"
+    },
+    {
+      "@type":"ListItem",
+      "position":3,
+      "name":"Fix Unexpected Token in JSON Error",
+      "item":"https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html"
+    }
+  ]
+}
+</script><!-- Article Schema --><script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "@id":"https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html#article",
+  "headline":"Unexpected Token in JSON at Position 0: How to Fix JSON.parse Errors",
+  "description":"A practical guide to fixing Unexpected token in JSON at position 0, 1 or N errors in JavaScript, JSON.parse and fetch API responses.",
+  "datePublished":"2026-08-09T00:00:00+05:30",
+  "dateModified":"2026-08-09T00:00:00+05:30",
+  "author":{
+    "@type":"Organization",
+    "name":"BestTools Editorial Team",
+    "url":"https://besttools.pdfgridbox.in/"
+  },
+  "publisher":{
+    "@type":"Organization",
+    "name":"BestTools",
+    "url":"https://besttools.pdfgridbox.in/"
+  },
+  "mainEntityOfPage":{
+    "@type":"WebPage",
+    "@id":"https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html"
+  },
+  "articleSection":"Developer Tools",
+  "keywords":[
+    "unexpected token in json",
+    "unexpected token in json at position 0",
+    "unexpected token in json at position 1",
+    "unexpected token in json at position",
+    "syntaxerror unexpected token in json",
+    "json parse error",
+    "JSON.parse error",
+    "fetch json error",
+    "fetch unexpected token",
+    "unexpected token '<' in JSON",
+    "invalid JSON",
+    "invalid JSON syntax",
+    "JSON syntax error",
+    "JSON validator",
+    "JSON formatter",
+    "JSON formatter online",
+    "trailing comma JSON",
+    "single quotes JSON"
+  ]
+}
+</script><!-- WebPage + WebApplication Schema --><script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebPage",
+      "@id":"https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html#webpage",
+      "url":"https://besttools.pdfgridbox.in/blog/fix-unexpected-token-json-error.html",
+      "name":"Unexpected Token in JSON at Position 0: How to Fix JSON.parse Errors",
+      "description":"Guide to diagnosing and fixing invalid JSON and JSON.parse errors."
+    },
+    {
+      "@type":"WebApplication",
+      "name":"BestTools JSON Formatter",
+      "url":"https://besttools.pdfgridbox.in/json-formatter.html",
+      "applicationCategory":"DeveloperApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires a modern web browser",
+      "offers":{
+        "@type":"Offer",
+        "price":"0",
+        "priceCurrency":"USD"
+      }
+    }
+  ]
+}
+</script><style>
+
+:root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#5d687b;
+    --primary:#075bd8;
+    --primary-dark:#0648aa;
+    --border:#e1e6ee;
+    --soft-blue:#eef5ff;
+    --soft-red:#fdf2f2;
+    --red:#d92d20;
+    --soft-green:#eefaf4;
+    --green:#087443;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.72;
+}
+
+.page{
+    max-width:960px;
+    margin:auto;
+    padding:20px;
+}
+
+.topbar{
+    margin-bottom:18px;
+}
+
+.back{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:700;
+}
+
+.back:hover{
+    text-decoration:underline;
+}
+
+.breadcrumbs{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:18px;
+}
+
+.breadcrumbs a{
+    color:var(--primary-dark);
+    text-decoration:none;
+}
+
+.article{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:38px;
+    box-shadow:0 8px 30px rgba(0,0,0,.045);
+}
+
+.badge{
+    display:inline-block;
+    background:#eaf2ff;
+    color:var(--primary-dark);
+    padding:6px 13px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:clamp(28px,5vw,42px);
+    line-height:1.15;
+    margin:0 0 15px;
+    letter-spacing:-.8px;
+    color:#101827;
+}
+
+h2{
+    font-size:26px;
+    margin-top:42px;
+    margin-bottom:14px;
+    line-height:1.25;
+    color:#111827;
+}
+
+h3{
+    font-size:20px;
+    margin-top:24px;
+    color:#172033;
+}
+
+p{
+    color:#354052;
+}
+
+.updated{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.intro{
+    font-size:18px;
+}
+
+.toc{
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px 22px;
+    margin:28px 0;
+}
+
+.toc strong{
+    display:block;
+    margin-bottom:10px;
+}
+
+.toc a{
+    color:var(--primary-dark);
+    text-decoration:none;
+}
+
+.toc li{
+    margin:7px 0;
+}
+
+.answer-box{
+    background:var(--soft-blue);
+    border:1px solid #d7e6ff;
+    border-left:5px solid var(--primary);
+    padding:20px 22px;
+    border-radius:10px;
+    margin:28px 0;
+}
+
+.answer-box strong{
+    color:#0c3e8c;
+}
+
+.error-box{
+    background:var(--soft-red);
+    border:1px solid #fecdca;
+    border-left:5px solid var(--red);
+    padding:18px 20px;
+    border-radius:10px;
+    margin:25px 0;
+}
+
+.error-box strong{
+    color:var(--red);
+}
+
+.success-box{
+    background:var(--soft-green);
+    border:1px solid #ccebd9;
+    border-left:5px solid var(--green);
+    padding:18px 20px;
+    border-radius:10px;
+    margin:25px 0;
+}
+
+.code-box{
+    background:#101827;
+    color:#e8eef7;
+    padding:20px;
+    border-radius:11px;
+    overflow-x:auto;
+    margin:22px 0;
+    font-family:'Courier New',Courier,monospace;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.code-box code{
+    background:transparent;
+    padding:0;
+    color:inherit;
+}
+
+.cta{
+    background:linear-gradient(135deg,#075bd8,#063c92);
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    margin:38px 0;
+}
+
+.cta h2,
+.cta p{
+    color:white;
+}
+
+.cta h2{
+    margin-top:0;
+}
+
+.button{
+    display:inline-block;
+    background:white;
+    color:#075bd8;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:800;
+    margin-top:9px;
+}
+
+.button:hover{
+    transform:translateY(-1px);
+}
+
+.table-wrap{
+    overflow-x:auto;
+    margin:25px 0;
+}
+
+table{
+    width:100%;
+    min-width:680px;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,
+td{
+    border:1px solid var(--border);
+    padding:13px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#f2f5f9;
+    font-weight:800;
+}
+
+.checklist{
+    padding-left:24px;
+}
+
+.checklist li{
+    margin:11px 0;
+}
+
+.faq{
+    border-bottom:1px solid var(--border);
+    padding:5px 0 16px;
+    margin-bottom:19px;
+}
+
+.related{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+    margin-top:20px;
+}
+
+.related a{
+    display:block;
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    text-decoration:none;
+    color:var(--primary-dark);
+    background:#fff;
+    font-weight:800;
+}
+
+.related a:hover{
+    border-color:#b9d0f5;
+    background:#f9fbff;
+}
+
+.author-box{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:15px 17px;
+    margin-top:32px;
+}
+
+.author-icon{
+    width:42px;
+    height:42px;
+    min-width:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eaf2ff;
+    color:var(--primary-dark);
+    font-weight:900;
+}
+
+code{
+    background:#f1f3f5;
+    padding:2px 6px;
+    border-radius:5px;
+}
+
+@media(max-width:650px){
+
+    .page{
+        padding:10px;
+    }
+
+    .article{
+        padding:22px 16px;
+        border-radius:14px;
+    }
+
+    .related{
+        grid-template-columns:1fr;
+    }
+
+    h2{
+        font-size:23px;
+    }
+
+    .intro{
+        font-size:17px;
+    }
+
+}
+
+</style></head><body><div class="page"><header class="topbar">
+    <a class="back" href="../index.html">← Back to BestTools Home</a>
+</header><main class="article"><nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="../index.html">BestTools</a>
+    <span> › </span>
+    <a href="./index.html">Developer Guides</a>
+    <span> › </span>
+    <span>Fix JSON Syntax Error</span>
+</nav><span class="badge">JavaScript • JSON • API Debugging</span>
+
+<h1>Unexpected Token in JSON at Position 0: How to Fix JSON.parse Errors</h1><p class="updated">
+    Published August 9, 2026 · BestTools Editorial Team · Developer Guide
+</p><p class="intro">
+    Seeing <strong>“Unexpected token in JSON at position 0”</strong>,
+    <strong>“Unexpected token &lt; in JSON at position 0”</strong>,
+    or another <strong>SyntaxError when using JSON.parse()</strong>?
+    The problem usually means JavaScript expected valid JSON but received malformed JSON, HTML, an empty response, or another unexpected value.
+</p><div class="answer-box">
+    <strong>Fastest way to check your JSON:</strong>
+    paste the response or JSON string into the
+    <a href="../json-formatter.html">BestTools JSON Formatter & Validator</a>.
+    It can help identify malformed syntax, incorrect quotes, missing brackets and trailing commas before you use <code>JSON.parse()</code>.
+</div><div class="toc"><strong>On this page</strong>
+
+<ul>
+    <li><a href="#meaning">What does Unexpected Token in JSON mean?</a></li>
+    <li><a href="#position0">Why does it happen at position 0?</a></li>
+    <li><a href="#causes">Common causes and fixes</a></li>
+    <li><a href="#html">Unexpected token &lt; from an API</a></li>
+    <li><a href="#syntax">Valid vs invalid JSON examples</a></li>
+    <li><a href="#fetch">How to debug fetch().json()</a></li>
+    <li><a href="#parse">How to safely use JSON.parse()</a></li>
+    <li><a href="#validator">Validate JSON online</a></li>
+    <li><a href="#faq">Frequently asked questions</a></li>
+</ul></div><div class="cta"><h2>Validate JSON Online</h2><p>
+    Paste JSON or an API response into the free BestTools JSON Formatter to validate,
+    format and inspect your data before parsing it in JavaScript.
+</p><a class="button" href="../json-formatter.html">
+    Open JSON Formatter & Validator →
+</a></div><h2 id="meaning">What Does “Unexpected Token in JSON” Mean?</h2><p>
+    JavaScript throws an <code>Unexpected token in JSON</code> error when a JSON parser encounters
+    a character or value that is not valid according to JSON syntax.
+    The error commonly appears when using <code>JSON.parse()</code> or when an application expects
+    an API response to contain JSON.
+</p><p>
+    For example, this is valid JSON:
+</p><div class="code-box">
+<code>{
+  "name": "Alice",
+  "age": 25,
+  "active": true
+}</code>
+</div><p>
+    But this is not valid JSON because the property name and string value use single quotes:
+</p><div class="code-box">
+<code>{'name': 'Alice'}</code>
+</div><p>
+    Standard JSON requires double quotes around property names and string values.
+</p><h2 id="position0">Why Does “Unexpected Token” Happen at Position 0?</h2><p>
+    The position number represents the character index where parsing failed.
+    <strong>Position 0</strong> means the parser failed immediately at the first character.
+</p><table>
+<thead>
+<tr>
+<th>Example Error</th>
+<th>Typical Meaning</th>
+</tr>
+</thead><tbody><tr>
+<td><code>Unexpected token &lt; in JSON at position 0</code></td>
+<td>The server probably returned HTML instead of JSON.</td>
+</tr><tr>
+<td><code>Unexpected token o in JSON at position 1</code></td>
+<td>The input may already be a JavaScript object or may not be valid JSON text.</td>
+</tr><tr>
+<td><code>Unexpected token } in JSON at position N</code></td>
+<td>A closing bracket or object structure is probably malformed.</td>
+</tr><tr>
+<td><code>Unexpected end of JSON input</code></td>
+<td>The JSON is incomplete, truncated or empty.</td>
+</tr></tbody>
+</table><h2 id="causes">7 Common Causes of JSON Parse Errors</h2><h3>1. API Returns HTML Instead of JSON</h3><p>
+    One of the most common causes of
+    <strong>Unexpected token &lt; in JSON at position 0</strong>
+    is an API endpoint returning an HTML error page.
+</p><p>
+    If the response begins with:
+</p><div class="code-box">
+<code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;...</code>
+</div><p>
+    it is not JSON. It may be a 404 page, server error page, login page or redirect response.
+</p><div class="success-box">
+<strong>Fix:</strong>
+Check the API URL, HTTP status code, response headers and actual response body before calling
+<code>response.json()</code>.
+</div><h3>2. Single Quotes Instead of Double Quotes</h3><p>
+    JSON does not use JavaScript-style single-quoted strings.
+</p><div class="code-box">
+<code>❌ Invalid:
+{'name': 'John'}✅ Valid:
+{"name": "John"}</code>
+
+</div><h3>3. Trailing Commas</h3><p>
+    A trailing comma after the final property or array item is invalid in standard JSON.
+</p><div class="code-box">
+<code>❌ Invalid:
+{
+  "name": "John",
+}✅ Valid:
+{
+"name": "John"
+}</code>
+
+</div><h3>4. Unquoted Object Keys</h3><div class="code-box">
+<code>❌ Invalid:
+{name: "John"}✅ Valid:
+{"name": "John"}</code>
+
+</div><h3>5. Empty or Incomplete JSON Response</h3><p>
+    If your server returns an empty response but your application attempts to parse it as JSON,
+    you may see <code>Unexpected end of JSON input</code>.
+</p><h3>6. Broken Strings and Escape Characters</h3><p>
+    Quotes inside strings must be escaped correctly. Invalid line breaks and backslashes can also
+    break JSON parsing.
+</p><div class="code-box">
+<code>❌ Invalid:
+{"message":"He said "hello""}✅ Valid:
+{"message":"He said "hello""}</code>
+
+</div><h3>7. Wrong Content Returned by the Server</h3><p>
+    Your application may expect JSON while the server returns plain text, XML, HTML,
+    a redirect page or an authentication response.
+</p><h2 id="html">How to Fix “Unexpected Token &lt; in JSON at Position 0”</h2><p>
+    This particular error deserves special attention because it frequently happens with
+    JavaScript <code>fetch()</code> requests.
+</p><p>
+    Instead of immediately calling <code>response.json()</code>, inspect the response:
+</p><div class="code-box">
+<code>const response = await fetch("/api/data");console.log("Status:", response.status);
+console.log("Content-Type:", response.headers.get("content-type"));
+
+const text = await response.text();
+
+console.log("Server response:", text);</code>
+
+</div><p>
+    If the console shows HTML instead of JSON, the JSON parser is not the real problem.
+    The API endpoint or server response needs to be fixed first.
+</p><h2 id="syntax">Invalid JSON vs Valid JSON Examples</h2><div class="table-wrap"><table><thead>
+<tr>
+<th>Problem</th>
+<th>❌ Invalid</th>
+<th>✅ Valid</th>
+</tr>
+</thead><tbody><tr>
+<td>Single quotes</td>
+<td><code>{'name':'John'}</code></td>
+<td><code>{"name":"John"}</code></td>
+</tr><tr>
+<td>Unquoted key</td>
+<td><code>{name:"John"}</code></td>
+<td><code>{"name":"John"}</code></td>
+</tr><tr>
+<td>Trailing comma</td>
+<td><code>{"id":10,}</code></td>
+<td><code>{"id":10}</code></td>
+</tr><tr>
+<td>Array trailing comma</td>
+<td><code>["A","B",]</code></td>
+<td><code>["A","B"]</code></td>
+</tr><tr>
+<td>Invalid boolean</td>
+<td><code>{"active":True}</code></td>
+<td><code>{"active":true}</code></td>
+</tr><tr>
+<td>Invalid null</td>
+<td><code>{"value":None}</code></td>
+<td><code>{"value":null}</code></td>
+</tr></tbody></table></div><h2 id="fetch">How to Debug JSON Errors With fetch()</h2><p>
+    When using a REST API or JavaScript fetch request, first check whether the HTTP request succeeded
+    before assuming that the body contains valid JSON.
+</p><div class="code-box">
+<code>async function loadData() {try {
+
+    const response = await fetch("/api/data");
+
+    if (!response.ok) {
+        throw new Error(
+            `HTTP error: ${response.status}`
+        );
+    }
+
+    const contentType =
+        response.headers.get("content-type") || "";
+
+    if (!contentType.includes("application/json")) {
+        throw new Error(
+            "Server did not return JSON."
+        );
+    }
+
+    const data = await response.json();
+
+    console.log(data);
+
+} catch (error) {
+
+    console.error(
+        "JSON/API error:",
+        error.message
+    );
+
+}
+
+}</code>
+
+</div><h2 id="parse">How to Safely Use JSON.parse()</h2><p>
+    If JSON comes from a user, API, local storage or another external source,
+    wrap parsing in <code>try...catch</code> so malformed data does not crash your application.
+</p><div class="code-box">
+<code>function parseJSONSafely(value) {try {
+
+    return JSON.parse(value);
+
+} catch (error) {
+
+    console.error(
+        "Invalid JSON:",
+        error.message
+    );
+
+    return null;
+}
+
+}</code>
+
+</div><h2 id="validator">How to Validate JSON Online</h2><p>
+    If you do not immediately see the syntax problem, a JSON validator can make debugging much faster.
+    Paste the JSON response into a formatter and look for missing brackets, incorrect quotation marks,
+    trailing commas and malformed values.
+</p><ol class="checklist"><li>
+    Copy the JSON response or payload.
+</li><li>
+    Open the
+    <a href="../json-formatter.html">BestTools JSON Formatter & Validator</a>.
+</li><li>
+    Paste the JSON into the input field.
+</li><li>
+    Validate and format the data.
+</li><li>
+    Fix the reported syntax issue and test your JavaScript again.
+</li></ol><div class="cta"><h2>Fix Your JSON Before Debugging Your Code</h2><p>
+    Quickly validate malformed JSON, format API responses and make large JSON data easier to inspect.
+</p><a class="button" href="../json-formatter.html">
+    Validate JSON Free →
+</a></div><h2>JSON Error Checklist</h2><ul class="checklist"><li>Are all object keys wrapped in double quotes?</li><li>Are all string values wrapped in double quotes?</li><li>Did you remove trailing commas?</li><li>Are brackets and braces properly matched?</li><li>Are booleans written as <code>true</code> or <code>false</code>?</li><li>Is null written as <code>null</code>?</li><li>Does the API actually return JSON?</li><li>Is the HTTP response status successful?</li><li>Is the response empty?</li><li>Does the response contain an HTML error page?</li><li>Are strings containing quotes properly escaped?</li></ul><h2 id="faq">Frequently Asked Questions</h2><div class="faq"><h3>What does Unexpected token in JSON at position 0 mean?</h3><p>
+    It means the JSON parser encountered an invalid character at the beginning of the input.
+    A common example is an API returning HTML instead of JSON.
+</p></div><div class="faq"><h3>Why does fetch().json() give Unexpected token &lt;?</h3><p>
+    The <code>&lt;</code> character commonly indicates that the server returned HTML,
+    such as a 404 page, login page or server error, instead of JSON.
+</p></div><div class="faq"><h3>Can JSON use single quotes?</h3><p>
+    No. Standard JSON strings and property names use double quotes.
+    Single quotes are not valid JSON syntax.
+</p></div><div class="faq"><h3>Are trailing commas allowed in JSON?</h3><p>
+    No. Standard JSON does not allow a comma after the final property in an object
+    or after the final element in an array.
+</p></div><div class="faq"><h3>What does Unexpected end of JSON input mean?</h3><p>
+    It usually means that the JSON input ended before the parser found a complete valid JSON value.
+    An empty or truncated response can cause this error.
+</p></div><div class="faq"><h3>How do I find the exact JSON error position?</h3><p>
+    The position number identifies the character index where parsing failed.
+    You can inspect the raw response in your browser developer tools or use the
+    <a href="../json-formatter.html">BestTools JSON Formatter</a> to make the structure easier to inspect.
+</p></div><h2>Related Developer Tools & Guides</h2><div class="related"><a href="../json-formatter.html">
+    JSON Formatter & Validator
+    <span style="display:block;font-weight:normal;color:#5d687b;">
+        Format, validate and inspect JSON data
+    </span>
+</a><a href="https://besttools.pdfgridbox.in/blog/json-formatting-guide.html">
+    JSON Formatting Guide
+    <span style="display:block;font-weight:normal;color:#5d687b;">
+        Learn JSON formatting and syntax basics
+    </span>
+</a><a href="https://besttools.pdfgridbox.in/blog/api-response-debugging.html">
+    API Response Debugging Guide
+    <span style="display:block;font-weight:normal;color:#5d687b;">
+        Debug REST API responses and HTTP errors
+    </span>
+</a><a href="https://besttools.pdfgridbox.in/blog/javascript-json-guide.html">
+    JavaScript JSON Guide
+    <span style="display:block;font-weight:normal;color:#5d687b;">
+        Understand JSON.parse, stringify and API data
+    </span>
+</a></div><div class="author-box"><div class="author-icon">BT</div><div>
+<strong>BestTools Editorial Team</strong><span style="display:block;font-size:13px;color:#5d687b;">
+Practical guides for JavaScript, JSON, APIs and developer tools.
+</span></div></div></main></div></body>
+</html>
