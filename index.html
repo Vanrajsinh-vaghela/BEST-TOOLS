@@ -589,7 +589,7 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.7fr 1fr 1fr 1fr;
+      grid-template-columns: 1.8fr 1fr 1fr;
       gap: 30px;
     }
 
@@ -625,10 +625,32 @@
       color: #fff;
     }
 
-    .copyright {
-      margin-top: 38px;
-      padding-top: 18px;
+    /* HORIZONTAL LEGAL LINKS IN FOOTER */
+    .footer-horizontal-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 36px;
+      padding-top: 24px;
       border-top: 1px solid #1e293b;
+    }
+
+    .footer-horizontal-links a {
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .footer-horizontal-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      margin-top: 18px;
       color: #64748b;
       text-align: center;
       font-size: 11px;
@@ -645,7 +667,7 @@
       }
 
       .footer-grid {
-        grid-template-columns: 1.5fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -680,11 +702,15 @@
       }
 
       .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       .footer-brand {
-        grid-column: 1 / -1;
+        grid-column: auto;
+      }
+
+      .footer-horizontal-links {
+        gap: 16px;
       }
     }
 
@@ -695,14 +721,6 @@
 
       .benefits {
         grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-brand {
-        grid-column: auto;
       }
     }
 
@@ -748,9 +766,10 @@
 
       <div class="mobile-menu" id="mobileMenu">
         <a href="#tools">Tools</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/privacy.html">Privacy</a>
+        <a href="/contact.html">Contact Us</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/about.html">About Us</a>
       </div>
     </div>
   </header>
@@ -1059,17 +1078,15 @@
             <a href="/image-converter.html">Image Converter</a>
           </div>
         </div>
-
-        <div>
-          <div class="footer-title">Company</div>
-          <div class="footer-links">
-            <a href="/about.html">About</a>
-            <a href="/contact.html">Contact</a>
-            <a href="/privacy.html">Privacy</a>
-            <a href="/terms.html">Terms</a>
-          </div>
-        </div>
       </div>
+
+      <!-- HORIZONTAL LEGAL PAGES BAR -->
+      <nav class="footer-horizontal-links" aria-label="Legal and Company Links">
+        <a href="/contact.html">Contact Us</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/about.html">About Us</a>
+      </nav>
 
       <div class="copyright">
         © 2026 BestTools. All rights reserved.
