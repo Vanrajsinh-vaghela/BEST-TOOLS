@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-41C8GSM3WH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-41C8GSM3WH');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary Meta Tags -->
   <title>Free Online JSON Formatter, Beautifier & Validator | BestTools</title>
   <meta name="title" content="Free Online JSON Formatter, Beautifier & Validator | BestTools">
-  <meta name="description" content="Free online JSON Formatter, Beautifier, and Validator. Format, validate, prettify, and minify your JSON data instantly in real-time. 100% private and browser-based.">
-  <meta name="keywords" content="json formatter, json beautifier, json validator, format json online, pretty print json, minify json, json viewer, developer tools">
+  <meta name="description" content="Free online JSON Formatter, Beautifier, and Validator. Format, validate, prettify, minify, and inspect JSON in tree view instantly. 100% private and browser-based.">
   <meta name="author" content="BestTools">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#2563eb">
@@ -18,19 +27,22 @@
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://besttools.pdfgridbox.in/json-formatter.html">
   <meta property="og:title" content="Free Online JSON Formatter & Beautifier | BestTools">
-  <meta property="og:description" content="Format, validate, prettify, and minify JSON strings instantly in your browser. 100% free and secure.">
+  <meta property="og:description" content="Format, validate, prettify, minify, and inspect JSON strings instantly in your browser. 100% free, secure, and client-side.">
   <meta property="og:image" content="https://besttools.pdfgridbox.in/og-json-formatter.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://besttools.pdfgridbox.in/json-formatter.html">
   <meta name="twitter:title" content="Free Online JSON Formatter & Beautifier">
-  <meta name="twitter:description" content="Format, validate, and minify JSON data instantly.">
+  <meta name="twitter:description" content="Format, validate, tree view, and minify JSON data instantly with complete privacy.">
   <meta name="twitter:image" content="https://besttools.pdfgridbox.in/og-json-formatter.jpg">
 
   <!-- 1. WebApplication Schema -->
@@ -42,7 +54,7 @@
     "url": "https://besttools.pdfgridbox.in/json-formatter.html",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
-    "description": "Online tool to format, beautify, validate, and minify JSON code instantly.",
+    "description": "Online developer tool to format, beautify, validate, inspect tree view, and minify JSON code instantly.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -81,7 +93,7 @@
         "name": "What is JSON formatting?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "JSON formatting adds line breaks and indentation to raw, compact JSON data to make it easily readable for human developers."
+          "text": "JSON formatting adds proper line breaks and indentation to raw, minified JSON strings to make the data easily readable and inspectable for developers."
         }
       },
       {
@@ -89,7 +101,7 @@
         "name": "Is my JSON data secure on BestTools?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! All processing happens entirely inside your browser using client-side JavaScript. Your data is never transmitted to any external server."
+          "text": "Yes! All processing happens entirely inside your browser using client-side JavaScript. Your JSON payloads are never uploaded, logged, or transmitted to any external server."
         }
       },
       {
@@ -97,7 +109,15 @@
         "name": "How do I fix invalid JSON syntax errors?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "When you paste your code, our JSON Validator highlights missing quotes, trailing commas, or unclosed brackets so you can fix them immediately."
+          "text": "Our JSON Validator checks syntax in real time and highlights line numbers, positions, missing quotes, trailing commas, or unclosed brackets so you can fix errors immediately."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Beautify and Minify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beautifying adds spaces and line breaks for human readability, while minifying removes all whitespace and line breaks to compress file size for optimal production API performance."
         }
       }
     ]
@@ -116,6 +136,7 @@
       --soft-blue: #eff6ff;
       --soft: #f1f5f9;
       --green: #059669;
+      --green-soft: #ecfdf5;
       --red: #dc2626;
       --radius: 16px;
     }
@@ -135,11 +156,23 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    button, textarea { font: inherit; }
+    button, textarea, select, input { font: inherit; }
 
     .container {
       width: min(1120px, calc(100% - 32px));
       margin: auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* HEADER & BREADCRUMB */
@@ -178,6 +211,23 @@
       font-weight: 800;
     }
 
+    .back-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #334155;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--soft-blue);
+      color: var(--primary);
+      border-color: #93c5fd;
+    }
+
     .breadcrumb {
       font-size: 13px;
       color: var(--muted);
@@ -189,7 +239,7 @@
 
     /* HERO */
     .tool-hero {
-      padding: 24px 0 16px;
+      padding: 24px 0 12px;
       text-align: center;
     }
 
@@ -202,8 +252,26 @@
     .tool-hero p {
       color: var(--muted);
       font-size: 15px;
-      max-width: 640px;
+      max-width: 660px;
       margin: auto;
+    }
+
+    /* PRIVACY BADGE CARD */
+    .privacy-badge-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      width: fit-content;
+      margin: 12px auto 20px;
+      text-align: center;
     }
 
     /* EDITOR AREA */
@@ -213,7 +281,6 @@
       border-radius: var(--radius);
       box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
       overflow: hidden;
-      margin-top: 20px;
     }
 
     .status-bar {
@@ -221,33 +288,123 @@
       font-size: 13px;
       font-weight: 600;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       border-bottom: 1px solid var(--border);
       background: var(--soft);
+    }
+
+    .status-left-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .indent-select-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .indent-select-group select {
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-metrics {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
     }
 
     .status-msg {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      font-weight: 700;
     }
 
     .status-msg.valid { color: var(--green); }
     .status-msg.invalid { color: var(--red); }
 
+    .editor-view-wrapper {
+      position: relative;
+      min-height: 380px;
+    }
+
     textarea {
       width: 100%;
-      min-height: 360px;
-      padding: 20px;
+      min-height: 380px;
+      padding: 18px 20px;
       border: none;
       outline: none;
       resize: vertical;
       font-family: "Consolas", "Monaco", "Courier New", monospace;
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text);
       line-height: 1.6;
       background: #ffffff;
+    }
+
+    /* TREE VIEW PANEL */
+    .tree-view-panel {
+      display: none;
+      width: 100%;
+      min-height: 380px;
+      max-height: 600px;
+      overflow: auto;
+      padding: 18px 20px;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 13.5px;
+      background: #fafafa;
+    }
+
+    .tree-node {
+      margin-left: 16px;
+    }
+
+    .tree-key {
+      color: #9333ea;
+      font-weight: 600;
+    }
+
+    .tree-string {
+      color: #16a34a;
+    }
+
+    .tree-number {
+      color: #2563eb;
+    }
+
+    .tree-boolean {
+      color: #d97706;
+      font-weight: 700;
+    }
+
+    .tree-null {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    .tree-toggle {
+      cursor: pointer;
+      user-select: none;
+      font-weight: 800;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .tree-toggle:hover {
+      color: var(--primary);
     }
 
     .editor-actions {
@@ -277,6 +434,11 @@
       border-color: #93c5fd;
     }
 
+    .btn:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     .btn-primary {
       background: var(--primary);
       color: #fff;
@@ -288,9 +450,24 @@
       color: #fff;
     }
 
+    .btn-file-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .btn-file-wrapper input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
     /* GUIDES & SEO SECTION */
     .guide-table-section {
-      margin-top: 40px;
+      margin-top: 36px;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -324,10 +501,37 @@
     }
 
     th { background: var(--soft); font-weight: 700; color: var(--text); }
+    tr:hover td { background: var(--soft-blue); }
+
+    /* FEATURE HIGHLIGHTS GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .feature-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
 
     /* RICH SEO CONTENT */
     .seo-content {
-      margin: 40px 0 60px;
+      margin: 32px 0 60px;
       padding: 32px;
       background: #fff;
       border: 1px solid var(--border);
@@ -354,6 +558,42 @@
     summary { padding: 16px 20px; font-weight: 700; cursor: pointer; font-size: 14px; background: #fff; }
     .answer { padding: 0 20px 16px; color: var(--muted); font-size: 13.5px; background: #fff; }
 
+    /* RELATED TOOLS LINKING */
+    .related-tools-box {
+      margin-top: 28px;
+      padding: 20px;
+      background: var(--soft-blue);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+    }
+
+    .related-tools-box h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+
+    .related-tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .related-tools-list a {
+      background: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #93c5fd;
+      color: var(--primary-dark);
+    }
+
+    .related-tools-list a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
     /* FOOTER */
     footer {
       padding: 40px 0 20px;
@@ -365,9 +605,24 @@
 
     footer a { color: #cbd5e1; }
 
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
     @media (max-width: 600px) {
       .editor-actions { justify-content: center; }
       .btn { flex: 1 1 calc(50% - 8px); text-align: center; }
+      .status-bar { flex-direction: column; align-items: flex-start; }
+      .footer-links { gap: 12px; }
     }
   </style>
 </head>
@@ -376,54 +631,102 @@
   <!-- HEADER -->
   <header>
     <div class="container">
-      <nav class="nav">
+      <nav class="nav" aria-label="Main Navigation">
         <a class="logo" href="/" aria-label="BestTools Home">
           <span class="logo-mark">B</span>
           <span>BestTools</span>
         </a>
-        <a href="/" class="btn">← All Tools</a>
+        <a href="/" class="back-btn">← All Tools</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <!-- BREADCRUMB -->
-    <div class="breadcrumb">
+    <nav class="breadcrumb" aria-label="Breadcrumb navigation">
       <a href="/">Home</a> / <span>JSON Formatter</span>
-    </div>
+    </nav>
 
     <!-- HERO -->
     <section class="tool-hero">
       <h1>JSON Formatter & Beautifier</h1>
-      <p>Format, validate, prettify, and minify your JSON code in real time.</p>
+      <p>Format, validate, prettify, inspect, and minify your JSON code in real time.</p>
     </section>
+
+    <!-- PRIVACY BADGE CARD -->
+    <div class="privacy-badge-card" role="region" aria-label="Privacy guarantee">
+      <span>🔒 Private & Browser-Based:</span> Your JSON data is processed locally in your browser and is not uploaded to our servers.
+    </div>
 
     <!-- EDITOR AREA -->
-    <section class="editor-container">
+    <section class="editor-container" aria-label="JSON Editor Workspace">
       <div class="status-bar">
-        <span>JSON Editor</span>
-        <span id="statusMsg" class="status-msg">Ready</span>
+        <div class="status-left-controls">
+          <span>JSON Editor</span>
+          <div class="indent-select-group">
+            <label for="indentSelect">Tab Size:</label>
+            <select id="indentSelect" aria-label="JSON Indentation Spacing">
+              <option value="2" selected>2 Spaces</option>
+              <option value="4">4 Spaces</option>
+              <option value="tab">Tab</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="status-metrics">
+          <span id="sizeMetric">Size: 0 B</span>
+          <span id="keysMetric">Keys: 0</span>
+        </div>
+
+        <span id="statusMsg" class="status-msg" aria-live="polite">Ready</span>
       </div>
 
-      <textarea
-        id="jsonInput"
-        placeholder='Paste your raw JSON code here... e.g. {"name": "BestTools", "status": "active"}'
-        autofocus
-      ></textarea>
+      <div class="editor-view-wrapper">
+        <label for="jsonInput" class="sr-only">Input or paste JSON code here</label>
+        <textarea
+          id="jsonInput"
+          placeholder='Paste your raw JSON code here... e.g. {"name": "BestTools", "status": "active", "features": ["fast", "private"]}'
+          autofocus
+        ></textarea>
+        <div id="treeViewPanel" class="tree-view-panel" aria-label="JSON Interactive Tree View"></div>
+      </div>
 
       <div class="editor-actions">
-        <button class="btn btn-primary" id="formatBtn">Beautify JSON</button>
-        <button class="btn" id="minifyBtn">Minify JSON</button>
-        <button class="btn" id="validateBtn">Validate JSON</button>
-        <button class="btn" id="copyBtn">Copy Output</button>
-        <button class="btn" id="clearBtn">Clear</button>
+        <button class="btn btn-primary" id="formatBtn" type="button">Beautify JSON</button>
+        <button class="btn" id="minifyBtn" type="button">Minify JSON</button>
+        <button class="btn" id="validateBtn" type="button">Validate JSON</button>
+        <button class="btn" id="treeBtn" type="button">Tree View</button>
+        <button class="btn" id="sampleBtn" type="button">Load Sample</button>
+        <div class="btn-file-wrapper">
+          <button class="btn" type="button">Upload File</button>
+          <input type="file" id="fileInput" accept=".json,application/json,text/plain" aria-label="Upload JSON File">
+        </div>
+        <button class="btn" id="downloadBtn" type="button">Download JSON</button>
+        <button class="btn" id="copyBtn" type="button">Copy Output</button>
+        <button class="btn" id="clearBtn" type="button">Clear</button>
       </div>
     </section>
 
-    <!-- JSON DATA TYPES CHEATSHEET (SEO FEATURE) -->
+    <!-- FEATURE HIGHLIGHTS GRID -->
+    <section class="features-grid" aria-label="JSON Formatter Features">
+      <div class="feature-card">
+        <h3>⚡ Real-Time Parsing & Validation</h3>
+        <p>Instantly highlights syntax errors, line numbers, and character positions for quick debugging of API responses.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔒 100% Client-Side Privacy</h3>
+        <p>Your API payloads, keys, and configurations are processed entirely in browser memory and never uploaded to any server.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌳 Interactive Tree Inspector</h3>
+        <p>Toggle between plain formatted text and an expandable visual tree view to inspect complex nested JSON objects.</p>
+      </div>
+    </section>
+
+    <!-- JSON DATA TYPES CHEATSHEET -->
     <section class="guide-table-section">
       <h2>Standard JSON Data Types Quick Reference</h2>
-      <p>Valid JSON syntax supports six primitive data types:</p>
+      <p>Valid JSON syntax supports six primitive data types according to RFC 8259 specifications:</p>
 
       <div class="table-wrapper">
         <table>
@@ -457,7 +760,7 @@
             </tr>
             <tr>
               <td><strong>Boolean</strong></td>
-              <td>True or false values</td>
+              <td>True or false literals</td>
               <td><code>"active": true</code></td>
             </tr>
             <tr>
@@ -474,16 +777,29 @@
     <article class="seo-content">
       <h2>Why Use Our Online JSON Formatter & Beautifier?</h2>
       <p>
-        JSON (JavaScript Object Notation) is the standard data interchange format used in web development, APIs, and microservices. However, raw JSON generated by servers is often compressed into a single line without spaces, making it extremely difficult to read.
+        JSON (JavaScript Object Notation) is the standard data interchange format used across modern web APIs, databases, and microservices. However, raw JSON returned by API endpoints is frequently minified into single-line strings without whitespace, making reading and debugging difficult.
       </p>
 
       <h3>Key Features:</h3>
       <ul>
-        <li><strong>Instant Prettification:</strong> Formats raw JSON string with proper 2-space indentation and line breaks.</li>
-        <li><strong>Built-in Syntax Validator:</strong> Detects misplaced commas, quotes, or missing closing braces immediately.</li>
-        <li><strong>JSON Minifier:</strong> Removes unnecessary whitespace to compress JSON payload sizes for production.</li>
-        <li><strong>Client-Side Security:</strong> Processed entirely inside your browser JavaScript. Sensitive API payloads remain 100% private.</li>
+        <li><strong>Instant Prettification:</strong> Formats raw JSON string with customizable 2-space, 4-space, or tab indentation.</li>
+        <li><strong>Syntax Debugger:</strong> Accurately pinpoints missing quotes, trailing commas, or unclosed brackets with line numbers.</li>
+        <li><strong>Interactive Tree View:</strong> Expand and collapse object nodes to visually navigate multi-level arrays and objects.</li>
+        <li><strong>Production Minifier:</strong> Strips whitespace to compress payload sizes for network optimization.</li>
+        <li><strong>Client-Side Security:</strong> Evaluates data locally inside your web browser. Confidential credentials stay 100% private.</li>
       </ul>
+
+      <!-- RELATED TOOLS LINKING -->
+      <div class="related-tools-box">
+        <h3>Explore Other Free Utilities on BestTools:</h3>
+        <div class="related-tools-list">
+          <a href="/word-counter.html">Word Counter</a>
+          <a href="/image-to-webp.html">Image to WebP Converter</a>
+          <a href="/qr-code-generator.html">QR Code Generator</a>
+          <a href="/image-compressor.html">Image Compressor</a>
+          <a href="/image-converter.html">Image Converter</a>
+        </div>
+      </div>
 
       <h2>Frequently Asked Questions (FAQ)</h2>
       <div class="faq-wrapper">
@@ -494,15 +810,21 @@
           </div>
         </details>
         <details>
-          <summary>Is my JSON data saved anywhere?</summary>
+          <summary>Is my JSON data secure on BestTools?</summary>
           <div class="answer">
-            No! Everything works locally in your web browser. No data is stored, uploaded, or logged on servers.
+            Yes! Everything works locally in your web browser. No data is stored, uploaded, or logged on servers.
           </div>
         </details>
         <details>
-          <summary>Why does JSON validation fail?</summary>
+          <summary>How do I fix invalid JSON syntax errors?</summary>
           <div class="answer">
-            Common reasons include missing double quotes around keys, trailing commas after the last array item, or unclosed curly braces.
+            Our JSON Validator checks syntax in real time and highlights line numbers, positions, missing quotes, trailing commas, or unclosed brackets so you can fix errors immediately.
+          </div>
+        </details>
+        <details>
+          <summary>What is the difference between Beautify and Minify?</summary>
+          <div class="answer">
+            Beautifying adds spaces and line breaks for human readability, while minifying removes all whitespace and line breaks to compress file size for optimal production API performance.
           </div>
         </details>
       </div>
@@ -512,69 +834,329 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>© 2026 BestTools. Fast, Free, and Privacy-Focused Utilities. <a href="/">All Tools</a></p>
+
+      <p>
+        © 2026 BestTools. Fast, Free, and Privacy-Focused Utilities.
+      </p>
+
+      <div class="footer-links" aria-label="Important Website Pages">
+        <a href="/about.html">About Us</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/contact.html">Contact Us</a>
+        <a href="/">All Tools</a>
+      </div>
+
     </div>
   </footer>
 
   <script>
+    // DOM Elements
     const jsonInput = document.getElementById("jsonInput");
+    const treeViewPanel = document.getElementById("treeViewPanel");
     const statusMsg = document.getElementById("statusMsg");
+    const sizeMetric = document.getElementById("sizeMetric");
+    const keysMetric = document.getElementById("keysMetric");
+    const indentSelect = document.getElementById("indentSelect");
+    const fileInput = document.getElementById("fileInput");
+
     const formatBtn = document.getElementById("formatBtn");
     const minifyBtn = document.getElementById("minifyBtn");
     const validateBtn = document.getElementById("validateBtn");
+    const treeBtn = document.getElementById("treeBtn");
+    const sampleBtn = document.getElementById("sampleBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
     const copyBtn = document.getElementById("copyBtn");
     const clearBtn = document.getElementById("clearBtn");
 
+    let isTreeViewActive = false;
+
+    // Helper: Format Bytes
+    function formatBytes(bytes) {
+      if (bytes === 0) return "0 B";
+      const k = 1024;
+      const sizes = ["B", "KB", "MB"];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    }
+
+    // Helper: Count JSON Keys recursively
+    function countKeys(obj) {
+      if (typeof obj !== 'object' || obj === null) return 0;
+      let count = 0;
+      if (Array.isArray(obj)) {
+        obj.forEach(item => count += countKeys(item));
+      } else {
+        const keys = Object.keys(obj);
+        count += keys.length;
+        keys.forEach(k => count += countKeys(obj[k]));
+      }
+      return count;
+    }
+
+    // Get Indentation value
+    function getIndent() {
+      const val = indentSelect.value;
+      if (val === "tab") return "\t";
+      return parseInt(val, 10) || 2;
+    }
+
+    // Status & Metrics Setter
     function setStatus(msg, type) {
       statusMsg.textContent = msg;
       statusMsg.className = "status-msg " + (type || "");
     }
 
+    function updateMetrics(text, parsedObj = null) {
+      const bytes = new Blob([text]).size;
+      sizeMetric.textContent = `Size: ${formatBytes(bytes)}`;
+      if (parsedObj !== null) {
+        keysMetric.textContent = `Keys: ${countKeys(parsedObj)}`;
+      } else {
+        keysMetric.textContent = "Keys: 0";
+      }
+    }
+
+    // Calculate Line/Col Error Position from position offset
+    function getErrorPosition(text, pos) {
+      const lines = text.slice(0, pos).split("\n");
+      const line = lines.length;
+      const col = lines[lines.length - 1].length + 1;
+      return { line, col };
+    }
+
     // Format / Beautify
-    formatBtn.addEventListener("click", () => {
+    function beautifyJSON() {
+      showTextEditor();
       const val = jsonInput.value.trim();
       if (!val) {
         setStatus("Ready", "");
+        updateMetrics("");
         return;
       }
       try {
         const parsed = JSON.parse(val);
-        jsonInput.value = JSON.stringify(parsed, null, 2);
+        const indent = getIndent();
+        const formatted = JSON.stringify(parsed, null, indent);
+        jsonInput.value = formatted;
         setStatus("✓ Valid JSON (Beautified)", "valid");
+        updateMetrics(formatted, parsed);
       } catch (err) {
-        setStatus("✗ Invalid JSON Syntax: " + err.message, "invalid");
+        handleParseError(err, val);
       }
-    });
+    }
 
     // Minify
-    minifyBtn.addEventListener("click", () => {
+    function minifyJSON() {
+      showTextEditor();
       const val = jsonInput.value.trim();
       if (!val) return;
       try {
         const parsed = JSON.parse(val);
-        jsonInput.value = JSON.stringify(parsed);
+        const minified = JSON.stringify(parsed);
+        jsonInput.value = minified;
         setStatus("✓ Valid JSON (Minified)", "valid");
+        updateMetrics(minified, parsed);
       } catch (err) {
-        setStatus("✗ Invalid JSON Syntax: " + err.message, "invalid");
+        handleParseError(err, val);
       }
-    });
+    }
 
     // Validate
-    validateBtn.addEventListener("click", () => {
+    function validateJSON() {
       const val = jsonInput.value.trim();
       if (!val) {
         setStatus("Please paste JSON first", "invalid");
+        updateMetrics("");
         return;
       }
       try {
-        JSON.parse(val);
+        const parsed = JSON.parse(val);
         setStatus("✓ Valid JSON", "valid");
+        updateMetrics(val, parsed);
       } catch (err) {
-        setStatus("✗ Invalid JSON: " + err.message, "invalid");
+        handleParseError(err, val);
       }
+    }
+
+    // Error Parser
+    function handleParseError(err, val) {
+      let msg = err.message;
+      const posMatch = msg.match(/position\s+(\d+)/i);
+      if (posMatch && posMatch[1]) {
+        const pos = parseInt(posMatch[1], 10);
+        const { line, col } = getErrorPosition(val, pos);
+        msg += ` (Line ${line}, Col ${col})`;
+      }
+      setStatus("✗ Invalid JSON: " + msg, "invalid");
+      updateMetrics(val);
+    }
+
+    // Safe DOM Tree View Builder (XSS Safe)
+    function buildTreeDOM(val) {
+      const container = document.createElement("div");
+
+      function createNode(key, value) {
+        const node = document.createElement("div");
+        node.className = "tree-node";
+
+        if (key !== null) {
+          const keySpan = document.createElement("span");
+          keySpan.className = "tree-key";
+          keySpan.textContent = `"${key}": `;
+          node.appendChild(keySpan);
+        }
+
+        if (value === null) {
+          const nullSpan = document.createElement("span");
+          nullSpan.className = "tree-null";
+          nullSpan.textContent = "null";
+          node.appendChild(nullSpan);
+        } else if (typeof value === "boolean") {
+          const boolSpan = document.createElement("span");
+          boolSpan.className = "tree-boolean";
+          boolSpan.textContent = value.toString();
+          node.appendChild(boolSpan);
+        } else if (typeof value === "number") {
+          const numSpan = document.createElement("span");
+          numSpan.className = "tree-number";
+          numSpan.textContent = value.toString();
+          node.appendChild(numSpan);
+        } else if (typeof value === "string") {
+          const strSpan = document.createElement("span");
+          strSpan.className = "tree-string";
+          strSpan.textContent = `"${value}"`;
+          node.appendChild(strSpan);
+        } else if (typeof value === "object") {
+          const isArr = Array.isArray(value);
+          const openBracket = isArr ? "[" : "{";
+          const closeBracket = isArr ? "]" : "}";
+          const keys = Object.keys(value);
+
+          const toggleSpan = document.createElement("span");
+          toggleSpan.className = "tree-toggle";
+          toggleSpan.textContent = "▼ ";
+
+          const bracketSpan = document.createElement("span");
+          bracketSpan.textContent = `${openBracket} (${keys.length} ${isArr ? 'items' : 'keys'})`;
+
+          const childWrapper = document.createElement("div");
+
+          keys.forEach(k => {
+            childWrapper.appendChild(createNode(isArr ? null : k, value[k]));
+          });
+
+          const closeSpan = document.createElement("span");
+          closeSpan.textContent = closeBracket;
+
+          toggleSpan.addEventListener("click", () => {
+            if (childWrapper.style.display === "none") {
+              childWrapper.style.display = "block";
+              toggleSpan.textContent = "▼ ";
+            } else {
+              childWrapper.style.display = "none";
+              toggleSpan.textContent = "▶ ";
+            }
+          });
+
+          node.appendChild(toggleSpan);
+          node.appendChild(bracketSpan);
+          node.appendChild(childWrapper);
+          node.appendChild(closeSpan);
+        }
+
+        return node;
+      }
+
+      container.appendChild(createNode(null, val));
+      return container;
+    }
+
+    // Toggle Tree View
+    function toggleTreeView() {
+      const val = jsonInput.value.trim();
+      if (!val) return;
+
+      if (!isTreeViewActive) {
+        try {
+          const parsed = JSON.parse(val);
+          treeViewPanel.textContent = "";
+          treeViewPanel.appendChild(buildTreeDOM(parsed));
+          jsonInput.style.display = "none";
+          treeViewPanel.style.display = "block";
+          treeBtn.textContent = "Text View";
+          isTreeViewActive = true;
+          setStatus("✓ Tree View Active", "valid");
+        } catch (err) {
+          handleParseError(err, val);
+        }
+      } else {
+        showTextEditor();
+      }
+    }
+
+    function showTextEditor() {
+      jsonInput.style.display = "block";
+      treeViewPanel.style.display = "none";
+      treeBtn.textContent = "Tree View";
+      isTreeViewActive = false;
+    }
+
+    // Load Sample JSON
+    sampleBtn.addEventListener("click", () => {
+      showTextEditor();
+      const sample = {
+        "title": "BestTools Sample API Response",
+        "status": 200,
+        "success": true,
+        "data": {
+          "user": {
+            "id": 101,
+            "name": "Alex Developer",
+            "roles": ["admin", "editor"]
+          },
+          "services": [
+            { "id": "s1", "name": "Word Counter", "active": true },
+            { "id": "s2", "name": "QR Code Generator", "active": true }
+          ]
+        },
+        "meta": null
+      };
+      const formatted = JSON.stringify(sample, null, getIndent());
+      jsonInput.value = formatted;
+      setStatus("✓ Sample JSON Loaded", "valid");
+      updateMetrics(formatted, sample);
     });
 
-    // Copy
+    // File Upload Handler
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        showTextEditor();
+        jsonInput.value = evt.target.result;
+        beautifyJSON();
+      };
+      reader.readAsText(file);
+      fileInput.value = "";
+    });
+
+    // Download JSON
+    downloadBtn.addEventListener("click", () => {
+      if (!jsonInput.value.trim()) return;
+      const blob = new Blob([jsonInput.value], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "formatted-data.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // Copy Output
     copyBtn.addEventListener("click", () => {
       if (!jsonInput.value) return;
       navigator.clipboard.writeText(jsonInput.value);
@@ -585,9 +1167,37 @@
 
     // Clear
     clearBtn.addEventListener("click", () => {
+      showTextEditor();
       jsonInput.value = "";
       setStatus("Ready", "");
+      updateMetrics("");
       jsonInput.focus();
+    });
+
+    // Event Listeners
+    formatBtn.addEventListener("click", beautifyJSON);
+    minifyBtn.addEventListener("click", minifyJSON);
+    validateBtn.addEventListener("click", validateJSON);
+    treeBtn.addEventListener("click", toggleTreeView);
+    indentSelect.addEventListener("change", () => {
+      if (jsonInput.value.trim()) beautifyJSON();
+    });
+
+    jsonInput.addEventListener("input", () => {
+      const val = jsonInput.value.trim();
+      if (!val) {
+        setStatus("Ready", "");
+        updateMetrics("");
+        return;
+      }
+      try {
+        const parsed = JSON.parse(val);
+        setStatus("✓ Valid JSON", "valid");
+        updateMetrics(val, parsed);
+      } catch (err) {
+        setStatus("Typing...", "");
+        updateMetrics(val);
+      }
     });
   </script>
 </body>
