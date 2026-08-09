@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-41C8GSM3WH"></script>
   <script>
@@ -13,6 +11,7 @@
     gtag('config', 'G-41C8GSM3WH');
   </script>
 
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary Meta Tags -->
@@ -817,6 +816,19 @@
       color: #cbd5e1;
     }
 
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
     @media (max-width: 600px) {
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -834,6 +846,9 @@
       }
       .target-input-group {
         justify-content: space-between;
+      }
+      .footer-links {
+        gap: 12px;
       }
     }
   </style>
@@ -1245,7 +1260,19 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>© 2026 BestTools. Fast, Free, and Privacy-Focused Utilities. <a href="/">All Tools</a></p>
+
+      <p>
+        © 2026 BestTools. Fast, Free, and Privacy-Focused Utilities.
+      </p>
+
+      <div class="footer-links" aria-label="Important Website Pages">
+        <a href="/about-us.html">About Us</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/contact-us.html">Contact Us</a>
+        <a href="/">All Tools</a>
+      </div>
+
     </div>
   </footer>
 
