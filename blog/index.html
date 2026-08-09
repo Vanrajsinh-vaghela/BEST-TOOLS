@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Guides & Tutorials - PDFGridBox BestTools</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6;">
+
+    <header style="margin-bottom: 25px;">
+        <a href="../index.html" style="color: #0066cc; text-decoration: none; font-weight: bold;">← Back to Main Tools</a>
+    </header>
+
+    <h1>All Free Guides & Tutorials</h1>
+    <p>Explore our helpful guides for web tools, image compression, developer utilities, and more.</p>
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+    <!-- Dynamic List Container -->
+    <div id="articles-list" style="display: flex; flex-direction: column; gap: 15px;">
+        <p style="color: #666;">Loading latest articles...</p>
+    </div>
+
+    <script>
+        const githubUsername = 'Vanrajsinh-vaghela';
+        const repoName = 'BEST-TOOLS';
+
+        const apiUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/contents/blog`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(files => {
+                const container = document.getElementById('articles-list');
+                container.innerHTML = '';
+
+                // Filter out non-HTML files and index.html itself
+                const articleFiles = files.filter(file => file.name.endsWith('.html') && file.name !== 'index.html');
+
+                if (articleFiles.length === 0) {
+                    container.innerHTML = '<p>No articles published yet.</p>';
+                    return;
+                }
+
+                // Render all blog post links automatically
+                articleFiles.forEach(file => {
+                    let cleanTitle = file.name
+                        .replace('.html', '')
+                        .replace(/-/g, ' ')
+                        .toUpperCase();
+
+                    const card = document.createElement('div');
+                    card.style.cssText = 'border: 1px solid #e0e0e0; padding: 15px; border-radius: 8px; background: #fafafa;';
+                    card.innerHTML = `
+                        <h3 style="margin: 0 0 8px 0;">
+                            <a href="${file.name}" style="color: #0066cc; text-decoration: none;">${cleanTitle}</a>
+                        </h3>
+                        <p style="margin: 0; color: #666; font-size: 14px;">Read Full Guide →</p>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading posts:', error);
+                document.getElementById('articles-list').innerHTML = '<p>Failed to auto-load articles.</p>';
+            });
+    </script>
+</body>
+</html>
