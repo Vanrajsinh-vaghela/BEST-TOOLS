@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Free Online JSON Formatter, Beautifier & Validator | BestTools</title>
+  <meta name="title" content="Free Online JSON Formatter, Beautifier & Validator | BestTools">
+  <meta name="description" content="Free online JSON Formatter, Beautifier, and Validator. Format, validate, prettify, and minify your JSON data instantly in real-time. 100% private and browser-based.">
+  <meta name="keywords" content="json formatter, json beautifier, json validator, format json online, pretty print json, minify json, json viewer, developer tools">
+  <meta name="author" content="BestTools">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://besttools.pdfgridbox.in/json-formatter.html">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://besttools.pdfgridbox.in/json-formatter.html">
+  <meta property="og:title" content="Free Online JSON Formatter & Beautifier | BestTools">
+  <meta property="og:description" content="Format, validate, prettify, and minify JSON strings instantly in your browser. 100% free and secure.">
+  <meta property="og:image" content="https://besttools.pdfgridbox.in/og-json-formatter.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://besttools.pdfgridbox.in/json-formatter.html">
+  <meta name="twitter:title" content="Free Online JSON Formatter & Beautifier">
+  <meta name="twitter:description" content="Format, validate, and minify JSON data instantly.">
+  <meta name="twitter:image" content="https://besttools.pdfgridbox.in/og-json-formatter.jpg">
+
+  <!-- 1. WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON Formatter & Beautifier",
+    "url": "https://besttools.pdfgridbox.in/json-formatter.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "description": "Online tool to format, beautify, validate, and minify JSON code instantly.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- 2. Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://besttools.pdfgridbox.in/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "JSON Formatter",
+      "item": "https://besttools.pdfgridbox.in/json-formatter.html"
+    }]
+  }
+  </script>
+
+  <!-- 3. FAQ Schema for Google Search Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is JSON formatting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JSON formatting adds line breaks and indentation to raw, compact JSON data to make it easily readable for human developers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my JSON data secure on BestTools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! All processing happens entirely inside your browser using client-side JavaScript. Your data is never transmitted to any external server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I fix invalid JSON syntax errors?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When you paste your code, our JSON Validator highlights missing quotes, trailing commas, or unclosed brackets so you can fix them immediately."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --soft-blue: #eff6ff;
+      --soft: #f1f5f9;
+      --green: #059669;
+      --red: #dc2626;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, textarea { font: inherit; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* HEADER & BREADCRUMB */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 16px 0 0;
+    }
+
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* HERO */
+    .tool-hero {
+      padding: 24px 0 16px;
+      text-align: center;
+    }
+
+    .tool-hero h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .tool-hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 640px;
+      margin: auto;
+    }
+
+    /* EDITOR AREA */
+    .editor-container {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .status-bar {
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: var(--soft);
+    }
+
+    .status-msg {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-msg.valid { color: var(--green); }
+    .status-msg.invalid { color: var(--red); }
+
+    textarea {
+      width: 100%;
+      min-height: 360px;
+      padding: 20px;
+      border: none;
+      outline: none;
+      resize: vertical;
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+      background: #ffffff;
+    }
+
+    .editor-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--soft);
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #334155;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--soft-blue);
+      color: var(--primary);
+      border-color: #93c5fd;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    /* GUIDES & SEO SECTION */
+    .guide-table-section {
+      margin-top: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .guide-table-section h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .guide-table-section p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .table-wrapper { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th { background: var(--soft); font-weight: 700; color: var(--text); }
+
+    /* RICH SEO CONTENT */
+    .seo-content {
+      margin: 40px 0 60px;
+      padding: 32px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .seo-content h2 { font-size: 22px; margin: 24px 0 12px; }
+    .seo-content h2:first-child { margin-top: 0; }
+    .seo-content h3 { font-size: 17px; margin: 16px 0 8px; }
+    .seo-content p, .seo-content ul { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+    .seo-content ul { padding-left: 20px; }
+    .seo-content li { margin-bottom: 6px; }
+
+    /* FAQ ACCORDION */
+    .faq-wrapper {
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    details { border-bottom: 1px solid var(--border); }
+    details:last-child { border-bottom: none; }
+    summary { padding: 16px 20px; font-weight: 700; cursor: pointer; font-size: 14px; background: #fff; }
+    .answer { padding: 0 20px 16px; color: var(--muted); font-size: 13.5px; background: #fff; }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 0 20px;
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    footer a { color: #cbd5e1; }
+
+    @media (max-width: 600px) {
+      .editor-actions { justify-content: center; }
+      .btn { flex: 1 1 calc(50% - 8px); text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a class="logo" href="/" aria-label="BestTools Home">
+          <span class="logo-mark">B</span>
+          <span>BestTools</span>
+        </a>
+        <a href="/" class="btn">← All Tools</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="/">Home</a> / <span>JSON Formatter</span>
+    </div>
+
+    <!-- HERO -->
+    <section class="tool-hero">
+      <h1>JSON Formatter & Beautifier</h1>
+      <p>Format, validate, prettify, and minify your JSON code in real time.</p>
+    </section>
+
+    <!-- EDITOR AREA -->
+    <section class="editor-container">
+      <div class="status-bar">
+        <span>JSON Editor</span>
+        <span id="statusMsg" class="status-msg">Ready</span>
+      </div>
+
+      <textarea
+        id="jsonInput"
+        placeholder='Paste your raw JSON code here... e.g. {"name": "BestTools", "status": "active"}'
+        autofocus
+      ></textarea>
+
+      <div class="editor-actions">
+        <button class="btn btn-primary" id="formatBtn">Beautify JSON</button>
+        <button class="btn" id="minifyBtn">Minify JSON</button>
+        <button class="btn" id="validateBtn">Validate JSON</button>
+        <button class="btn" id="copyBtn">Copy Output</button>
+        <button class="btn" id="clearBtn">Clear</button>
+      </div>
+    </section>
+
+    <!-- JSON DATA TYPES CHEATSHEET (SEO FEATURE) -->
+    <section class="guide-table-section">
+      <h2>Standard JSON Data Types Quick Reference</h2>
+      <p>Valid JSON syntax supports six primitive data types:</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Description</th>
+              <th>Valid Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>String</strong></td>
+              <td>Text wrapped inside double quotes</td>
+              <td><code>"status": "success"</code></td>
+            </tr>
+            <tr>
+              <td><strong>Number</strong></td>
+              <td>Integer or floating point number</td>
+              <td><code>"code": 200</code></td>
+            </tr>
+            <tr>
+              <td><strong>Object</strong></td>
+              <td>Key-value pairs enclosed in curly braces</td>
+              <td><code>"user": { "id": 1 }</code></td>
+            </tr>
+            <tr>
+              <td><strong>Array</strong></td>
+              <td>Ordered list of items in square brackets</td>
+              <td><code>"tags": ["free", "tools"]</code></td>
+            </tr>
+            <tr>
+              <td><strong>Boolean</strong></td>
+              <td>True or false values</td>
+              <td><code>"active": true</code></td>
+            </tr>
+            <tr>
+              <td><strong>Null</strong></td>
+              <td>Represents an empty or null value</td>
+              <td><code>"data": null</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RICH SEO CONTENT -->
+    <article class="seo-content">
+      <h2>Why Use Our Online JSON Formatter & Beautifier?</h2>
+      <p>
+        JSON (JavaScript Object Notation) is the standard data interchange format used in web development, APIs, and microservices. However, raw JSON generated by servers is often compressed into a single line without spaces, making it extremely difficult to read.
+      </p>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Instant Prettification:</strong> Formats raw JSON string with proper 2-space indentation and line breaks.</li>
+        <li><strong>Built-in Syntax Validator:</strong> Detects misplaced commas, quotes, or missing closing braces immediately.</li>
+        <li><strong>JSON Minifier:</strong> Removes unnecessary whitespace to compress JSON payload sizes for production.</li>
+        <li><strong>Client-Side Security:</strong> Processed entirely inside your browser JavaScript. Sensitive API payloads remain 100% private.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div class="faq-wrapper">
+        <details>
+          <summary>What is JSON formatting?</summary>
+          <div class="answer">
+            JSON formatting restructures messy or minified JSON text into a clean hierarchy with proper spacing and indentation.
+          </div>
+        </details>
+        <details>
+          <summary>Is my JSON data saved anywhere?</summary>
+          <div class="answer">
+            No! Everything works locally in your web browser. No data is stored, uploaded, or logged on servers.
+          </div>
+        </details>
+        <details>
+          <summary>Why does JSON validation fail?</summary>
+          <div class="answer">
+            Common reasons include missing double quotes around keys, trailing commas after the last array item, or unclosed curly braces.
+          </div>
+        </details>
+      </div>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2026 BestTools. Fast, Free, and Privacy-Focused Utilities. <a href="/">All Tools</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const jsonInput = document.getElementById("jsonInput");
+    const statusMsg = document.getElementById("statusMsg");
+    const formatBtn = document.getElementById("formatBtn");
+    const minifyBtn = document.getElementById("minifyBtn");
+    const validateBtn = document.getElementById("validateBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    function setStatus(msg, type) {
+      statusMsg.textContent = msg;
+      statusMsg.className = "status-msg " + (type || "");
+    }
+
+    // Format / Beautify
+    formatBtn.addEventListener("click", () => {
+      const val = jsonInput.value.trim();
+      if (!val) {
+        setStatus("Ready", "");
+        return;
+      }
+      try {
+        const parsed = JSON.parse(val);
+        jsonInput.value = JSON.stringify(parsed, null, 2);
+        setStatus("✓ Valid JSON (Beautified)", "valid");
+      } catch (err) {
+        setStatus("✗ Invalid JSON Syntax: " + err.message, "invalid");
+      }
+    });
+
+    // Minify
+    minifyBtn.addEventListener("click", () => {
+      const val = jsonInput.value.trim();
+      if (!val) return;
+      try {
+        const parsed = JSON.parse(val);
+        jsonInput.value = JSON.stringify(parsed);
+        setStatus("✓ Valid JSON (Minified)", "valid");
+      } catch (err) {
+        setStatus("✗ Invalid JSON Syntax: " + err.message, "invalid");
+      }
+    });
+
+    // Validate
+    validateBtn.addEventListener("click", () => {
+      const val = jsonInput.value.trim();
+      if (!val) {
+        setStatus("Please paste JSON first", "invalid");
+        return;
+      }
+      try {
+        JSON.parse(val);
+        setStatus("✓ Valid JSON", "valid");
+      } catch (err) {
+        setStatus("✗ Invalid JSON: " + err.message, "invalid");
+      }
+    });
+
+    // Copy
+    copyBtn.addEventListener("click", () => {
+      if (!jsonInput.value) return;
+      navigator.clipboard.writeText(jsonInput.value);
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => copyBtn.textContent = originalText, 1500);
+    });
+
+    // Clear
+    clearBtn.addEventListener("click", () => {
+      jsonInput.value = "";
+      setStatus("Ready", "");
+      jsonInput.focus();
+    });
+  </script>
+</body>
+</html>
